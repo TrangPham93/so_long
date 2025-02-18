@@ -6,14 +6,15 @@
 #    By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 10:30:26 by trpham            #+#    #+#              #
-#    Updated: 2025/02/18 13:06:30 by trpham           ###   ########.fr        #
+#    Updated: 2025/02/18 20:15:52 by trpham           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = main.c
+SRCS = main.c \
+		helper.c
 		
 
 OBJS = $(SRCS:%.c=%.o)
