@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   image_render.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/18 09:39:11 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/18 16:48:58 by trpham           ###   ########.fr       */
+/*   Created: 2025/02/18 16:44:35 by trpham            #+#    #+#             */
+/*   Updated: 2025/02/18 16:51:34 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-#define SO_LONG_H
+#include "so_long.h"
 
-#include <mlx.h>
-#include <stdlib.h>
-#include <stdio.h> // for perror()
-// #include <keysym.h>
-
-typedef struct s_data
-{
-	void	*mlx;
-	void	*mlx_win;
-
-}	t_data;
-
-typedef struct s_img
+void put_background()
 {
 	void	*img;
-	char	*addr;
-	void	*resized_img;
-	char	*resized_addr;
-}	t_img;
+	char	*relative_path = "./images/Wooden_House_Roof_Tilset.xpm";
+	int		img_width;
+	int 	img_height;
 
-int on_destroy(t_data *data);
-
-
-#endif
+	img = mlx_xpm_file_to_image(data.mlx, relative_path, &img_width, &img_height);
+	if (!img)
+	{
+		perror("Failed to read images");
+		mlx_destroy_image(data.mlx, img);
+		return(1);
+	}
+	mlx_put_image_to_window(data.mlx, data.mlx_win, img, 0, 0);
+	(void)img;
+}
