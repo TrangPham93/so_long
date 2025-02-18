@@ -6,7 +6,7 @@
 #    By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 10:30:26 by trpham            #+#    #+#              #
-#    Updated: 2025/02/18 10:40:31 by trpham           ###   ########.fr        #
+#    Updated: 2025/02/18 13:06:30 by trpham           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,14 +36,14 @@ INCLUDES = -I/usr/include -Imlx -I$(LIBFT_DIR)
 %.o: %.c so_long.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@ 
 
+$(NAME): $(OBJS) $(LIBFT_NAME) $(MLX_LIB)
+	$(CC) $(CFLAGS) $^ -o $@ $(MLX_FLAGS)
+
 $(LIBFT_NAME):
 	@make -C $(LIBFT_DIR)
 
 $(MLX_LIB):
 	@make -C $(MLX_DIR)
-
-$(NAME): $(OBJS) $(LIBFT_NAME) $(MLX_LIB)
-	$(CC) $(CFLAGS) $^ -o $@ $(MLX_FLAGS)
 
 clean:
 	@make clean -C $(LIBFT_DIR)

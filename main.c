@@ -6,34 +6,72 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/18 10:45:53 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/18 15:58:52 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	close_window(void *param)
+// typedef struct s_data
+// {
+// 	void	*mlx;
+// 	void	*mlx_win;
+
+// }	t_data;
+
+// typedef struct s_img
+// {
+// 	void	*img;
+// 	char	*addr;
+// }	t_img;
+
+
+int on_destroy(t_data *data)
 {
-	(void)param;
-	exit(0); // Exit the program when the window is closed
-	return (0);
+    if (data->mlx_win)
+        mlx_destroy_window(data->mlx, data->mlx_win);
+    if (data->mlx)
+    {
+        mlx_destroy_display(data->mlx);
+        free(data->mlx);
+    }
+    return (0);
 }
+
 
 int	main(void)
 {
-	void	*mlx;
-	void	*mlx_win;
+	t_data	data;
+	void	*img;
+	char	*relative_path = "./images/Wooden_House_Roof_Tilset.xpm";
+	int		img_width;
+	int 	img_height;
 	
-	mlx = mlx_init(); // Initialize MLX
-	if (!mlx)
+	
+	data.mlx = mlx_init();
+	if (!data.mlx)
+	{
+		perror("Failed to initialize the pointer");
 		return (1);
-	mlx_win = mlx_new_window(mlx, 800, 600, "MLX Window Test");
-	if (!mlx_win)
+	}
+	data.mlx_win = mlx_new_window(data.mlx, 1200, 600, "Hello world!");
+	if (!data.mlx_win)
+	{
+		perror("Could not create a window");
 		return (1);
-
-	mlx_hook(mlx_win, 17, 0, close_window, NULL); // Handle window close button
-	mlx_loop(mlx); // Start the MLX loop
-
+	}
+	img = mlx_xpm_file_to_image(data.mlx, relative_path, &img_width, &img_height);
+	if (!img)
+	{
+		perror("Failed to read images");
+		mlx_destroy_image(data.mlx, img);
+		return(1);
+	}
+	mlx_put_image_to_window(data.mlx, data.mlx_win, img, 0, 0);
+	(void)img;
+	mlx_loop(data.mlx); 
+	on_destroy(&data);
+	
 	return (0);
 }
 
