@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/19 10:51:11 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/19 17:18:51 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int ac, char **av)
 	
 	if (ac != 2)
 	{
-		perror("Please choose a map");
+		perror("Error\nPlease choose a map");
 		exit(-1);
 	}
 	else
@@ -34,19 +34,19 @@ int	main(int ac, char **av)
 	data.mlx = mlx_init();
 	if (!data.mlx)
 	{
-		perror("Failed to initialize the pointer");
+		perror("Error\nFailed to initialize the pointer");
 		return (1);
 	}
 	data.mlx_win = mlx_new_window(data.mlx, 1200, 600, "Hello world!");
 	if (!data.mlx_win)
 	{
-		perror("Could not create a window");
+		perror("Error\nCould not create a window");
 		return (1);
 	}
 	img = mlx_xpm_file_to_image(data.mlx, relative_path, &img_width, &img_height);
 	if (!img)
 	{
-		perror("Failed to read images");
+		perror("Error\nFailed to read images");
 		mlx_destroy_image(data.mlx, img);
 		return(1);
 	}

@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:39:11 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/19 15:59:22 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/19 17:32:13 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <stdio.h> // for perror()
 #include "./libft/includes/get_next_line.h"
 #include "./libft/includes/libft.h"
+#include <error.h>
 
 typedef struct s_data
 {
@@ -47,10 +48,13 @@ typedef struct s_game
 }	t_game;
 
 void	read_map(const char *file_name,t_game *game);
+void	is_valid_filename(const char *str);
 void	validate_map(t_game *game);
 int 	is_rectangular(char **arr, t_game *game);
 int 	is_walled(char **arr, t_game *game);
 int 	have_three_elements(char **arr, t_game *game);
+int		not_allowed_element(char **arr, t_game *game);
+
 
 
 int		on_destroy(t_data *data);
