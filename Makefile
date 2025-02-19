@@ -6,7 +6,7 @@
 #    By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 10:30:26 by trpham            #+#    #+#              #
-#    Updated: 2025/02/18 20:15:52 by trpham           ###   ########.fr        #
+#    Updated: 2025/02/19 10:59:52 by trpham           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,13 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 SRCS = main.c \
-		helper.c
-		
+		helper.c \
+		game.c \
+		input_handler.c \
+		maps.c \
+		player.c
+
+
 
 OBJS = $(SRCS:%.c=%.o)
 

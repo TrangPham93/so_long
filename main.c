@@ -6,21 +6,31 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/18 21:10:18 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/19 10:51:11 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(void)
+int	main(int ac, char **av)
 {
+	t_game	game;
 	t_data	data;
 	void	*img;
 	char	*relative_path = "./images/empty_space.xpm";
 	int		img_width;
 	int 	img_height;
 	
-	
+	if (ac != 2)
+	{
+		perror("Please choose a map");
+		exit(-1);
+	}
+	else
+	{
+		read_map(av[1], &game);
+
+	}
 	data.mlx = mlx_init();
 	if (!data.mlx)
 	{
