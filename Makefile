@@ -6,7 +6,7 @@
 #    By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 10:30:26 by trpham            #+#    #+#              #
-#    Updated: 2025/02/19 17:20:25 by trpham           ###   ########.fr        #
+#    Updated: 2025/02/20 15:23:16 by trpham           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS = main.c \
 		input_handler.c \
 		maps.c \
 		maps_helper.c \
+		maps_helper2.c \
 		player.c
 
 

@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:26 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/19 18:10:35 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/20 17:20:33 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ void	read_map(const char *file_name, t_game *game)
 	is_valid_filename(file_name);
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
-	{
-		perror("Failed to open read map");
-		exit(-1);
-	}
+		handle_error("Failed to open map");
 	read_str = "";
 	while (1)
 	{
@@ -52,19 +49,9 @@ void	validate_map(char *str, t_game *game)
 	}
 	game->row_count = row_count;
 	game->map = ft_split(str, '\n');
-	if (is_rectangular(game) != 0 || is_walled(game) != 0|| have_three_elements(game) != 0
-			|| not_allowed_element(game))
-	{
-		perror("Error\nThis is a bad map, please use another map!");
-		exit(-1);
-	}
-	reacheable_map(game);
-	// i = 0;
-	// while (i < row_count)
-	// {
-	// 	printf("%s\n", (game->map)[i]);
-	// 	i++;
-	// }
+	if (is_rectangular(game) || is_walled(game) || have_three_elements(game)
+		|| not_allowed_element(game) || check_path(game))
+		handle_error("This is a bad map, please use another map!");
 }
 
 int	is_rectangular(t_game *game)
@@ -129,14 +116,14 @@ int	have_three_elements(t_game *game)
 			if ((game->map)[i][j] == 'P')
 			{
 				(*game).player_count++;
-				game->player.x = i;
-				game->player.y = j; 
+				game->player.y = i;
+				game->player.x = j;
 			}
 			else if ((game->map)[i][j] == 'E')
 			{
 				(*game).exit_count++;
-				game->exit.x = i;
-				game->exit.y = j;
+				game->exit.y = i;
+				game->exit.x = j;
 			}
 			else if ((game->map)[i][j] == 'C')
 				(*game).collectible_count++;
