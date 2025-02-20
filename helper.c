@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:45:21 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/20 17:12:50 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/20 17:41:50 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 int on_destroy(t_data *data)
 {
     if (data->mlx_win)
-        mlx_destroy_window(data->mlx, data->mlx_win);
-    if (data->mlx)
+        mlx_destroy_window(data->mlx_ptr, data->mlx_win);
+    if (data->mlx_ptr)
     {
-        mlx_destroy_display(data->mlx);
-        free(data->mlx);
+        mlx_destroy_display(data->mlx_ptr);
+        free(data->mlx_ptr);
     }
     return (0);
 }
