@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:39:11 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/19 17:32:13 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/20 13:36:22 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,37 @@ typedef struct s_img
 	char	*resized_addr;
 }	t_img;
 
+typedef struct s_axis
+{
+	int		x; //col
+	int		y; //row
+} t_axis;
+
+
 typedef struct s_game
 {
-	char	*map;
+	char	**map;
 	int		row_count;
 	int		col_count;
 	int		player_count;
 	int		exit_count;
 	int		collectible_count;
-	
+	int		up;
+	int		down;
+	int		left;
+	int		right;
+	t_axis	player;
+	t_axis	exit;
 }	t_game;
 
 void	read_map(const char *file_name,t_game *game);
 void	is_valid_filename(const char *str);
-void	validate_map(t_game *game);
-int 	is_rectangular(char **arr, t_game *game);
-int 	is_walled(char **arr, t_game *game);
-int 	have_three_elements(char **arr, t_game *game);
-int		not_allowed_element(char **arr, t_game *game);
+void	validate_map(char *str, t_game *game);
+int 	is_rectangular(t_game *game);
+int 	is_walled(t_game *game);
+int 	have_three_elements(t_game *game);
+int		not_allowed_element(t_game *game);
+void	reacheable_map(t_game *game);
 
 
 

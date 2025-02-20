@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/19 17:18:51 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/19 17:42:58 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	main(int ac, char **av)
 	else
 	{
 		read_map(av[1], &game);
-
 	}
 	data.mlx = mlx_init();
 	if (!data.mlx)

@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:26 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/19 17:29:37 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/19 18:10:35 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,57 +33,51 @@ void	read_map(const char *file_name, t_game *game)
 			break ;
 		read_str = ft_strjoin(read_str, row);
 	}
-	game->map = read_str;
-	validate_map(game);
+	validate_map(read_str, game);
 	close(fd);
 }
 
-void	validate_map(t_game *game)
+void	validate_map(char *str, t_game *game)
 {
-	char	**arr;
 	int		row_count;
 	int		i;
 
 	row_count = 1;
 	i = 0;
-	while ((game->map)[i])
+	while (str[i])
 	{
-		if ((game->map)[i] == '\n')
+		if (str[i] == '\n')
 			row_count++;
 		i++;
 	}
 	game->row_count = row_count;
-	arr = ft_split(game->map, '\n');
-	if (is_rectangular(arr, game) != 0 || is_walled(arr, game) != 0
-		|| have_three_elements(arr, game) != 0 || not_allowed_element(arr, game))
+	game->map = ft_split(str, '\n');
+	if (is_rectangular(game) != 0 || is_walled(game) != 0|| have_three_elements(game) != 0
+			|| not_allowed_element(game))
 	{
 		perror("Error\nThis is a bad map, please use another map!");
 		exit(-1);
 	}
-	if (have_three_elements(arr, game) != 0)
-	{
-		perror("Error\nMissing element");
-		exit(-1);
-	}
+	reacheable_map(game);
 	// i = 0;
 	// while (i < row_count)
 	// {
-	// 	printf("%s\n", arr[i]);
+	// 	printf("%s\n", (game->map)[i]);
 	// 	i++;
 	// }
 }
 
-int	is_rectangular(char **arr, t_game *game)
+int	is_rectangular(t_game *game)
 {
 	int	i;
 	int	len;
 	int	std_len;
 
 	i = 0;
-	std_len = ft_strlen(*arr);
+	std_len = ft_strlen((game->map)[0]);
 	while (i < (*game).row_count)
 	{
-		len = ft_strlen(arr[i]);
+		len = ft_strlen((game->map)[i]);
 		if (len != std_len)
 			return (-1);
 		i++;
@@ -92,7 +86,7 @@ int	is_rectangular(char **arr, t_game *game)
 	return (0);
 }
 
-int	is_walled(char **arr, t_game *game)
+int	is_walled(t_game *game)
 {
 	int	i;
 	int	j;
@@ -105,20 +99,20 @@ int	is_walled(char **arr, t_game *game)
 	last_col = (*game).col_count - 1;
 	while (j <= last_col)
 	{
-		if (arr[0][j] != '1' || arr[last_row][j] != '1')
+		if ((game->map)[0][j] != '1' || (game->map)[last_row][j] != '1')
 			return (-1);
 		j++;
 	}
 	while (i <= last_row)
 	{
-		if (arr[i][0] != '1' || arr[i][last_col] != '1')
+		if ((game->map)[i][0] != '1' || (game->map)[i][last_col] != '1')
 			return (-1);
 		i++;
 	}
 	return (0);
 }
 
-int	have_three_elements(char **arr, t_game *game)
+int	have_three_elements(t_game *game)
 {
 	int	i;
 	int	j;
@@ -132,11 +126,19 @@ int	have_three_elements(char **arr, t_game *game)
 		j = 1;
 		while (j < (*game).col_count - 1)
 		{
-			if (arr[i][j] == 'P')
+			if ((game->map)[i][j] == 'P')
+			{
 				(*game).player_count++;
-			else if (arr[i][j] == 'E')
+				game->player.x = i;
+				game->player.y = j; 
+			}
+			else if ((game->map)[i][j] == 'E')
+			{
 				(*game).exit_count++;
-			else if (arr[i][j] == 'C')
+				game->exit.x = i;
+				game->exit.y = j;
+			}
+			else if ((game->map)[i][j] == 'C')
 				(*game).collectible_count++;
 			j++;
 		}
