@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/20 19:41:16 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/20 20:00:21 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ int	main(int ac, char **av)
 	load_background(&data, &game);
 	load_elements(&data, &game);
 	
-	mlx_loop(data.mlx_ptr);
-
-	on_destroy(&data);
 	
+	mlx_loop(data.mlx_ptr);
+	on_destroy(&data);
 	return (0);
 }
 

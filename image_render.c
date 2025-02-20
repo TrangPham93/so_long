@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:35 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/20 19:58:58 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/20 21:59:13 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	load_window(t_data *data, t_game *game)
 
 void	load_background(t_data *data, t_game *game)
 {
-	char	*relative_path = "./images/empty_space.xpm";
+	char	*relative_path = "./images/tiles.xpm";
 	int		img_height = 32;
 	int 	img_width = 32;
 	int		i;
