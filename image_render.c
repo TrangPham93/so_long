@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:35 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/20 18:58:06 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/20 19:01:03 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	load_window(t_data data, t_game game)
 {
-	data.mlx_win = mlx_new_window(data.mlx_ptr, 1200, 800, "so_long");
+	data.mlx_win = mlx_new_window(data.mlx_ptr, game.col_count * 32,
+		game.row_count * 32 , "so_long");
 	if (!data.mlx_win)
 		handle_error("Failed to initialize a window");
 	mlx_loop(data.mlx_ptr);
-	(void)game;
 }
 
 void	load_background(t_data data, t_game game)
