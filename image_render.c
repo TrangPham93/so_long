@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:35 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/21 17:34:17 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/21 23:18:02 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,13 @@ void	render_img_exit_wall(t_data *data, t_game *game)
 		}
 	}
 }
-void	render_img_player(t_data *data, t_game *game)
+void	render_img_player(t_data *data)
 {
 	// int	i;
 	// int	j;
 	
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
-		data->img_player, game->player.x * IMG_W, game->player.y * IMG_H);
+		data->img_player, data->game->player.x * IMG_W, data->game->player.y * IMG_H);
 	
 	
 	// i = -1;
