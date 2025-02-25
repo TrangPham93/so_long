@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/21 23:18:56 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/25 16:53:34 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,29 @@ int	on_keypress(int keycode, t_data *data)
 		}
 		// (game->player.y)++;
 	}
-	// else if (keycode == S)
-	// {
-	// 	game->player.y--;
-	// 	render_img_player(data, game);
-	// }
+	else if (keycode == S)
+	{
+		if (data->game->map[data->game->player.y + 1][data->game->player.x] != '1')
+		{
+			data->game->player.y++;
+			render_img_player(data);
+		}
+	}
 	else if (keycode == A)
 	{
-		return (0);	
+		if (data->game->map[data->game->player.y][data->game->player.x - 1] != '1')
+		{
+			data->game->player.x--;
+			render_img_player(data);
+		}	
 	}
 	else if (keycode == D)
 	{
-		return (0);
+		if (data->game->map[data->game->player.y][data->game->player.x + 1] != '1')
+		{
+			data->game->player.x++;
+			render_img_player(data);
+		}	
 	}
 	else if (keycode == ESC)
 	{
@@ -98,38 +109,6 @@ int	on_keypress(int keycode, t_data *data)
 	return (0);
 }
 
-// int	on_keypress(int keycode, t_data *data)
-// {
-// 	if (keycode == W)
-// 	{
-// 		return (0);
-// 	}
-// 	else if (keycode == S)
-// 	{
-// 		return (0);
-// 	}
-// 	else if (keycode == A)
-// 	{
-// 		return (0);	
-// 	}
-// 	else if (keycode == D)
-// 	{
-// 		return (0);
-// 	}
-// 	else if (keycode == ESC)
-// 	{
-// 		on_destroy((void *)data);	
-// 	}
-// 	return (0);
-// }
-// int	quit_window(int keycode, t_data *data)
-// {
-// 	if (keycode == ESC)
-// 	{
-// 		on_destroy(data);
-// 		exit(-1);
-// 	}
-// }
 
 // int on_destroy(t_data *data)
 // {
