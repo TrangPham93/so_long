@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:26 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/20 17:20:33 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/28 16:17:05 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,9 @@ int	have_three_elements(t_game *game)
 	int	j;
 
 	i = 0;
-	(*game).exit_count = 0;
-	(*game).collectible_count = 0;
-	(*game).player_count = 0;
+	// (*game).exit_count = 0;
+	// (*game).collectible_count = 0;
+	// (*game).player_count = 0;
 	while (i++ < (*game).row_count - 1)
 	{
 		j = 1;

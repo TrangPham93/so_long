@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:39:11 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/28 15:06:22 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/28 16:23:24 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@
 # define IMG_W 32
 # define IMG_H 32
 # define ESC 65307
-# define W 119
-# define A 97
-# define S 115
-# define D 100
+# define U 65362
+# define D 65364
+# define L 65361
+# define R 65363
 
 // # define ESC 53
 // # define W 13
@@ -55,12 +55,6 @@ typedef struct s_game
 	t_axis	exit;
 	int		total_move;
 	int		total_collect;
-	// t_img	img_player;
-	// t_img	background;
-	// int		up;
-	// int		down;
-	// int		left;
-	// int		right;
 }	t_game;
 
 typedef struct s_data
@@ -75,6 +69,8 @@ typedef struct s_data
 	t_game	*game;
 
 }	t_data;
+
+void	init_data(t_data *data);
 
 // read map and validate the maps
 void	read_map(const char *file_name, t_game *game);

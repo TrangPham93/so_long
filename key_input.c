@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:45:07 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/28 15:59:55 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/28 16:23:43 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 int	on_keypress(int keycode, t_data *data)
 {
-	if (keycode == W)
+	if (keycode == U)
 		move_player(data, data->game->player.x, data->game->player.y - 1);
-	else if (keycode == S)
-		move_player(data, data->game->player.x, data->game->player.y + 1);
-	else if (keycode == A)
-		move_player(data, data->game->player.x - 1, data->game->player.y);
 	else if (keycode == D)
+		move_player(data, data->game->player.x, data->game->player.y + 1);
+	else if (keycode == L)
+		move_player(data, data->game->player.x - 1, data->game->player.y);
+	else if (keycode == R)
 		move_player(data, data->game->player.x + 1, data->game->player.y);
 	else if (keycode == ESC)
 		on_destroy((void *)data);
