@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:26 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/28 16:17:05 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/28 17:53:47 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,15 @@ void	read_map(const char *file_name, t_game *game)
 	{
 		row = get_next_line(fd);
 		if (!row)
+		{
+			free(row);
 			break ;
+		}
 		read_str = ft_strjoin(read_str, row);
+		free(row);
 	}
 	validate_map(read_str, game);
+	free(read_str);
 	close(fd);
 }
 

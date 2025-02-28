@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maps_helper.c                                      :+:      :+:    :+:   */
+/*   maps_helper1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 17:07:10 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/20 17:17:28 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/28 18:03:20 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,13 @@ void	is_valid_filename(const char *str)
 	len = ft_strlen(str);
 	file_type = ft_substr(str, len - 4, 4);
 	if (ft_strcmp(file_type, ".ber") != 0)
+	{
+		free(file_type);
 		handle_error("Not a valid file");
+	}
+	free(file_type);
 }
+
 
 int	not_allowed_element(t_game *game)
 {
