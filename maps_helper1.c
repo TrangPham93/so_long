@@ -27,7 +27,6 @@ void	is_valid_filename(const char *str)
 	free(file_type);
 }
 
-
 int	not_allowed_element(t_game *game)
 {
 	int	i;
@@ -41,7 +40,7 @@ int	not_allowed_element(t_game *game)
 		{
 			if ((game->map)[i][j] != 'P' && (game->map)[i][j] != 'E'
 				&& (game->map)[i][j] != 'C' && (game->map)[i][j] != '1'
-				&& (game->map)[i][j] != '0' )
+				&& (game->map)[i][j] != '0')
 				return (-1);
 			j++;
 		}

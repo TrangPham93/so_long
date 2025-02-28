@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:26 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/28 21:12:54 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/28 21:42:42 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	read_map(const char *file_name, t_game *game)
 	char	*row;
 
 	is_valid_filename(file_name);
-	// printf("valid file\n");
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 		handle_error("Failed to open map");
@@ -36,16 +35,14 @@ void	read_map(const char *file_name, t_game *game)
 		free(row);
 	}
 	validate_map(read_str, game);
-	// printf("validated\n");
-	
 	free(read_str);
 	close(fd);
 }
 
 void	validate_map(char *str, t_game *game)
 {
-	int		row_count;
-	int		i;
+	int	row_count;
+	int	i;
 
 	row_count = 1;
 	i = 0;
@@ -60,7 +57,6 @@ void	validate_map(char *str, t_game *game)
 	if (is_rectangular(game) || is_walled(game) || have_three_elements(game)
 		|| not_allowed_element(game) || check_path(game))
 		handle_error("This is a bad map, please use another map!");
-	// printf("validated map\n");
 }
 
 int	is_rectangular(t_game *game)
@@ -79,7 +75,6 @@ int	is_rectangular(t_game *game)
 		i++;
 	}
 	game->col_count = std_len;
-	// printf("retangular\n");
 	return (0);
 }
 
@@ -106,7 +101,6 @@ int	is_walled(t_game *game)
 			return (-1);
 		i++;
 	}
-	// printf("walled\n");
 	return (0);
 }
 
@@ -116,9 +110,6 @@ int	have_three_elements(t_game *game)
 	int	j;
 
 	i = 0;
-	// (*game).exit_count = 0;
-	// (*game).collectible_count = 0;
-	// (*game).player_count = 0;
 	while (i++ < (*game).row_count - 1)
 	{
 		j = 1;
@@ -144,6 +135,5 @@ int	have_three_elements(t_game *game)
 	if ((*game).player_count != 1 || (*game).exit_count != 1
 		|| (*game).collectible_count < 1)
 		return (-1);
-	// printf("3 element\n");
 	return (0);
 }
