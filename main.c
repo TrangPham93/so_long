@@ -6,18 +6,18 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/28 18:02:54 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/28 21:27:28 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	on_keyrelease(int keycode, t_data *data)
-{
-	(void)data;
-	printf("Pressed key: %d\\n", keycode);
-	return (0);
-}
+// int	on_keyrelease(int keycode, t_data *data)
+// {
+// 	(void)data;
+// 	printf("Pressed key: %d\\n", keycode);
+// 	return (0);
+// }
 
 int	main(int ac, char **av)
 {
@@ -28,7 +28,9 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		handle_error("No map is chosen");
 	init_data(&data);
+	// printf("now read maps\n");
 	read_map(av[1], &game);
+	// printf("read map succeed\n");
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
 		handle_error("Failed to initialize Mlx");

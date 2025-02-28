@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:45:07 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/28 17:08:58 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/28 21:23:52 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,21 @@ int on_destroy(void *param)
     t_data *data = (t_data *)param;
     
 	free_map(data);
-    if (data->mlx_win)
+    free_mlx(data);
+	exit(0);
+    return (0);
+}
+
+void	free_mlx(t_data *data)
+{
+	if (data->mlx_win)
         mlx_destroy_window(data->mlx_ptr, data->mlx_win);
     if (data->mlx_ptr)
     {
         mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr); // is this necessary?
     }
-	exit(0);
-    return (0);
+    
 }
 
 void	free_map(t_data *data)

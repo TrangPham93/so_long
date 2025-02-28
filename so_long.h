@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:39:11 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/28 17:08:21 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/28 21:24:06 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ void	free_map(t_data *data);
 void	print_map(char **map, t_game *game);
 void	handle_error(char *s);
 void	winner_print();
+void	free_mlx(t_data *data);
+
 
 
 

@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 17:07:10 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/28 18:03:20 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/28 21:14:22 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	check_path(t_game *game)
 	char	**temp_map;
 	int		is_valid;
 
+	// printf("enter check path\n");
 	temp_map = duplicate_map(game);
 	if (!temp_map)
 		handle_error("Cannot duplicate map");
@@ -66,8 +67,10 @@ int	check_path(t_game *game)
 	if (!temp_map)
 		handle_error("Cannot duplicate map");
 	is_valid = check_all_collectables(game, temp_map);
-	free_temp_map(game, temp_map);
+	// printf("check all collects\n");
+	// free_temp_map(game, temp_map);
 	if (is_valid != 0)
 		handle_error("Cannot reach collectable on map");
+	// printf("path ok\n");
 	return (0);
 }

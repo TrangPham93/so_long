@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:43:22 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/28 18:08:11 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/28 21:10:36 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,18 @@ char	**duplicate_map(t_game *game)
 void	free_temp_map(t_game *game, char **temp_map)
 {
 	int	i;
-
-	if (temp_map)
+	
+	i = 0;
+	while (i < game->row_count)
 	{
-		i = 0;
-		while (i < game->row_count)
-		{
-			if (temp_map[i])
-				free(temp_map[i]);
-			i++;
-		}
-		free(temp_map);
+		if (temp_map[i])
+			free(temp_map[i]);
+		i++;
 	}
+	free(temp_map);
+	// if (temp_map != NULL)
+	// {
+	// }
 }
 
 int	exit_reachable(t_game *game, char **temp_map, int x, int y)
@@ -83,7 +83,7 @@ int	collectables_reachable(t_game *game, char **temp_map, int x, int y)
 	return (-1);
 }
 
-int	check_all_collectables(t_game *game, char **temp_map)
+int		check_all_collectables(t_game *game, char **temp_map)
 {
 	int	i;
 	int	j;
@@ -99,15 +99,18 @@ int	check_all_collectables(t_game *game, char **temp_map)
 			{
 				if (collectables_reachable(game, temp_map, j, i) != 0)
 					handle_error("Invalid path to collectable");
+				printf("here work\n");
 				new_map = duplicate_map(game);
 				if (!new_map)
 					handle_error("Cannot duplicate map");
 				free_temp_map(game, temp_map);
 				temp_map = new_map;
+				printf("new map\n");
 			}
 			j++;
 		}
 		i++;
 	}
+	printf("finish while\n");
 	return (0);
 }
