@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:35 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/28 14:52:11 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/28 15:58:24 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	load_asset(t_data *data)
 {
-	load_window(data);
 	load_background(data);
 	render_img_exit_wall(data);
 	render_img_collectibles(data);
 	render_img_player(data);
+
 }
 
 void	load_window(t_data *data)
