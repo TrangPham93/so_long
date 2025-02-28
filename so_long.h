@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:39:11 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/28 16:23:24 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/28 17:08:21 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,14 @@
 # define IMG_W 32
 # define IMG_H 32
 # define ESC 65307
-# define U 65362
-# define D 65364
-# define L 65361
-# define R 65363
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define AU 65362
+# define AD 65364
+# define AL 65361
+# define AR 65363
 
 // # define ESC 53
 // # define W 13
@@ -97,6 +101,7 @@ void	load_images(t_data *data);
 void	render_img_exit_wall(t_data *data);
 void	render_img_player(t_data *data);
 void	render_img_collectibles(t_data *data);
+void	render_movement_count(t_data *data);
 
 // keyboard action
 int		on_keypress(int keycode, t_data *data);
@@ -107,11 +112,8 @@ void	free_map(t_data *data);
 //please delete before submit
 void	print_map(char **map, t_game *game);
 void	handle_error(char *s);
-// int	quit_window(int keycode, t_data *data);
+void	winner_print();
 
-
-
-// int	on_keypress(int keycode, t_data *data, t_game *game);
 
 
 #endif

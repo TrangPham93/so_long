@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:45:07 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/28 16:23:43 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/28 17:08:58 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 int	on_keypress(int keycode, t_data *data)
 {
-	if (keycode == U)
+	if (keycode == AU || keycode == W)
 		move_player(data, data->game->player.x, data->game->player.y - 1);
-	else if (keycode == D)
+	else if (keycode == AD || keycode == S)
 		move_player(data, data->game->player.x, data->game->player.y + 1);
-	else if (keycode == L)
+	else if (keycode == AL || keycode == A)
 		move_player(data, data->game->player.x - 1, data->game->player.y);
-	else if (keycode == R)
+	else if (keycode == AR || keycode == D)
 		move_player(data, data->game->player.x + 1, data->game->player.y);
 	else if (keycode == ESC)
 		on_destroy((void *)data);
@@ -44,13 +44,12 @@ void	move_player(t_data *data, int new_x, int new_y)
 	if (next_location == 'E' && data->game->total_collect
 		== data->game->collectible_count)
 	{
-		ft_putstr_fd("You win!!\n", 1);
+		winner_print(data);
 		on_destroy((void *)data);
 	}
 	data->game->player.x = new_x;
 	data->game->player.y = new_y;
 	data->game->total_move++;
-	ft_printf("Total moves: %d\n", data->game->total_move);
 	load_asset(data);
 }
 
@@ -81,4 +80,13 @@ void	free_map(t_data *data)
 		i++;
 	}
 	free(data->game->map);
+}
+void	winner_print()
+{
+	ft_printf("-----------------------------------------------\n");
+	ft_printf("|    🎉🎉🎉  Congratulations!!!!!  🎉🎉🎉     |\n");
+	ft_printf("|    You found all collectibles and exit.     |\n");
+	ft_printf("|        ✓✓✓✓✓✓✓✓ You won! ✓✓✓✓✓✓✓✓           |\n");
+	ft_printf("-----------------------------------------------\n");	
+	exit(0);
 }

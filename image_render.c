@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:35 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/28 15:58:24 by trpham           ###   ########.fr       */
+/*   Updated: 2025/02/28 16:58:09 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	load_asset(t_data *data)
 	render_img_exit_wall(data);
 	render_img_collectibles(data);
 	render_img_player(data);
-
+	render_movement_count(data);
 }
 
 void	load_window(t_data *data)
 {
-	data->mlx_win = mlx_new_window(data->mlx_ptr, data->game->col_count * IMG_W,
-		data->game->row_count * IMG_H , "so_long");
+	data->mlx_win = mlx_new_window(data->mlx_ptr, (data->game->col_count + 3)
+		* IMG_W, data->game->row_count * IMG_H , "so_long");
 	if (!data->mlx_win)
 		handle_error("Failed to initialize a window");
 }
@@ -127,4 +127,20 @@ void	render_img_collectibles(t_data *data)
 				data->img_collects, j * IMG_W, i * IMG_H);
 		}
 	}
+}
+
+void	render_movement_count(t_data *data)
+{
+	char	*move_text;
+	int		x_text;
+	int		y_text;
+
+	x_text = data->game->col_count * IMG_W + 10;
+	y_text = 10;
+	move_text = ft_itoa(data->game->total_move);
+	mlx_string_put(data->mlx_ptr, data->mlx_win, x_text, y_text, 0xFF0000,
+		"Moves: ");
+	mlx_string_put(data->mlx_ptr, data->mlx_win, x_text + 50, y_text, 0xFF0000,
+		move_text);
+	free(move_text);
 }
