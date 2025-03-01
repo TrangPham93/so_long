@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:39:11 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/01 15:00:18 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/01 16:58:50 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,17 @@ int		check_all_collectables(t_game *game, char **temp_map);
 // image rendering
 void	load_asset(t_data *data);
 void	load_window(t_data *data);
-void	load_background(t_data *data);
-void	load_images(t_data *data);
+// void	load_background(t_data *data);
+// void	load_images(t_data *data);
+void	render_image(t_data *data);
+
+void	render_img_background(t_data *data);
 void	render_img_exit_wall(t_data *data);
 void	render_img_player(t_data *data);
 void	render_img_collectibles(t_data *data);
 void	render_movement_count(t_data *data);
+void	reset_temp_map(t_game *game, char **temp_map);
+
 
 // keyboard action
 int		on_keypress(int keycode, t_data *data);
@@ -117,7 +122,7 @@ void	print_map(char **map, t_game *game);
 void	handle_error(char *s, char *to_free);
 
 void	winner_print();
-void	free_mlx(t_data *data);
+// void	free_mlx(t_data *data);
 void	free_arr(char **arr, int count);
 
 
