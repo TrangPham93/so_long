@@ -6,40 +6,44 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:26 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/28 21:42:42 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/01 14:16:10 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	read_map(const char *file_name, t_game *game)
+void	read_map(const char *file_name, t_data *data)
 {
 	int		fd;
 	char	*read_str;
 	char	*row;
+	char	*temp;
 
 	is_valid_filename(file_name);
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
-		handle_error("Failed to open map");
-	read_str = "";
+		handle_error("Failed to open map", NULL);
+	read_str = ft_strdup("");
+	if (!read_str)
+		handle_error("Memory allocation failed\n", read_str);
 	while (1)
 	{
 		row = get_next_line(fd);
 		if (!row)
-		{
-			free(row);
 			break ;
-		}
-		read_str = ft_strjoin(read_str, row);
+		temp = ft_strjoin(read_str, row);
 		free(row);
+		free(read_str);
+		if (!temp)
+			handle_error("String join failed\n", NULL);
+		read_str = temp;
 	}
-	validate_map(read_str, game);
-	free(read_str);
+	validate_map(read_str, data);
+	// free(read_str);
 	close(fd);
 }
 
-void	validate_map(char *str, t_game *game)
+void	validate_map(char *str, t_data *data)
 {
 	int	row_count;
 	int	i;
@@ -52,11 +56,24 @@ void	validate_map(char *str, t_game *game)
 			row_count++;
 		i++;
 	}
-	game->row_count = row_count;
-	game->map = ft_split(str, '\n');
-	if (is_rectangular(game) || is_walled(game) || have_three_elements(game)
-		|| not_allowed_element(game) || check_path(game))
-		handle_error("This is a bad map, please use another map!");
+	data->game->row_count = row_count;
+	data->game->map = ft_split(str, '\n');
+	if (!data->game->map)
+	{
+		free_arr(data->game->map, data->game->row_count);
+		free(str);
+		handle_error("Memory allocation failed in ft_split\n", NULL);
+	}
+	if (is_rectangular(data->game) || is_walled(data->game)
+		|| have_three_elements(data->game) || not_allowed_element(data->game)
+		|| check_path(data->game))
+	{
+		free_arr(data->game->map, data->game->row_count);
+		// free_map(data);
+		free(str);
+		handle_error("This is a bad map, please use another map!", NULL);
+	}
+	free(str);
 }
 
 int	is_rectangular(t_game *game)

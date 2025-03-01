@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:39:11 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/28 21:24:06 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/01 15:00:18 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,15 @@ typedef struct s_data
 void	init_data(t_data *data);
 
 // read map and validate the maps
-void	read_map(const char *file_name, t_game *game);
+void	read_map(const char *file_name, t_data *data);
 void	is_valid_filename(const char *str);
-void	validate_map(char *str, t_game *game);
+void	validate_map(char *str, t_data *data);
 int		is_rectangular(t_game *game);
 int		is_walled(t_game *game);
 int		have_three_elements(t_game *game);
 int		not_allowed_element(t_game *game);
 char	**duplicate_map(t_game *game);
-void	free_temp_map(t_game *game, char **temp_map);
+// void	free_temp_map(t_game *game, char **temp_map);
 
 // check whether the map allows the player to exit and all collectibles
 int		check_path(t_game *game);
@@ -106,14 +106,20 @@ void	render_movement_count(t_data *data);
 // keyboard action
 int		on_keypress(int keycode, t_data *data);
 void	move_player(t_data *data, int new_x, int new_y);
-int		on_destroy(void *param);
-void	free_map(t_data *data);
+int	on_destroy(t_data *data);
+
+// int		on_destroy(void *param);
+// void	free_map(t_data *data);
 
 //please delete before submit
 void	print_map(char **map, t_game *game);
-void	handle_error(char *s);
+// void	handle_error(char *s);
+void	handle_error(char *s, char *to_free);
+
 void	winner_print();
 void	free_mlx(t_data *data);
+void	free_arr(char **arr, int count);
+
 
 
 

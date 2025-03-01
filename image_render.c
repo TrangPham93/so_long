@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:35 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/28 21:45:24 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/01 15:19:34 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	load_window(t_data *data)
 	data->mlx_win = mlx_new_window(data->mlx_ptr, data->game->col_count * IMG_W,
 			data->game->row_count * IMG_H, "so_long");
 	if (!data->mlx_win)
-		handle_error("Failed to initialize a window");
+		handle_error("Failed to initialize a window", NULL);
 }
 
 void	load_background(t_data *data)
@@ -36,7 +36,7 @@ void	load_background(t_data *data)
 	if (!data->img_background)
 	{
 		mlx_destroy_image(data->mlx_ptr, data->img_background);
-		handle_error("Failed to load image");
+		handle_error("Failed to load image", NULL);
 	}
 	i = -1;
 	while (++i < data->game->row_count)
@@ -68,11 +68,9 @@ void	load_images(t_data *data)
 	if (!data->img_exit || !data->img_collects || !data->img_player
 		|| !data->img_wall)
 	{
-		mlx_destroy_image(data->mlx_ptr, data->img_exit);
-		mlx_destroy_image(data->mlx_ptr, data->img_collects);
-		mlx_destroy_image(data->mlx_ptr, data->img_player);
-		mlx_destroy_image(data->mlx_ptr, data->img_wall);
-		handle_error("Failed to load image");
+		
+		on_destroy(data);
+		handle_error("Failed to load image", NULL);
 	}
 }
 

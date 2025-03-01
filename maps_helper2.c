@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:43:22 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/28 21:32:45 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/01 13:56:53 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,37 +19,37 @@ char	**duplicate_map(t_game *game)
 
 	temp_map = malloc(sizeof(char *) * game->row_count);
 	if (!temp_map)
-		handle_error("Memory allocation for temporary map failed");
+		handle_error("Memory allocation for temporary map failed", NULL);
 	i = 0;
 	while (i < game->row_count)
 	{
 		temp_map[i] = ft_strdup((game->map)[i]);
 		if (!temp_map[i])
 		{
-			free_temp_map(game, temp_map);
-			handle_error("ft_strdup row failed");
+			free_arr(temp_map, i);
+			handle_error("ft_strdup row failed", NULL);
 		}
 		i++;
 	}
 	return (temp_map);
 }
 
-void	free_temp_map(t_game *game, char **temp_map)
-{
-	int	i;
+// void	free_temp_map(t_game *game, char **temp_map)
+// {
+// 	int	i;
 
-	if (temp_map != NULL)
-	{
-		i = 0;
-		while (i < game->row_count)
-		{
-			if (temp_map[i])
-				free(temp_map[i]);
-			i++;
-		}
-		free(temp_map);
-	}
-}
+// 	if (temp_map != NULL)
+// 	{
+// 		i = 0;
+// 		while (i < game->row_count)
+// 		{
+// 			if (temp_map[i])
+// 				free(temp_map[i]);
+// 			i++;
+// 		}
+// 		free(temp_map);
+// 	}
+// }
 
 int	exit_reachable(t_game *game, char **temp_map, int x, int y)
 {
@@ -59,9 +59,10 @@ int	exit_reachable(t_game *game, char **temp_map, int x, int y)
 	if (temp_map[y][x] == 'E')
 		return (0);
 	temp_map[y][x] = 'V';
-	if (exit_reachable(game, temp_map, x + 1, y) == 0 || exit_reachable(game,
-			temp_map, x - 1, y) == 0 || exit_reachable(game, temp_map, x, y
-			+ 1) == 0 || exit_reachable(game, temp_map, x, y - 1) == 0)
+	if (exit_reachable(game, temp_map, x + 1, y) == 0
+		|| exit_reachable(game, temp_map, x - 1, y) == 0
+		|| exit_reachable(game, temp_map, x, y + 1) == 0
+		|| exit_reachable(game, temp_map, x, y - 1) == 0)
 		return (0);
 	return (-1);
 }
@@ -97,12 +98,16 @@ int	check_all_collectables(t_game *game, char **temp_map)
 			if (temp_map[i][j] == 'C')
 			{
 				if (collectables_reachable(game, temp_map, j, i) != 0)
-					handle_error("Invalid path to collectable");
+				{
+					free_arr(temp_map, game->row_count);
+					handle_error("Invalid path to collectable", NULL);
+				}
 				// printf("here work\n");
 				new_map = duplicate_map(game);
 				if (!new_map)
-					handle_error("Cannot duplicate map");
-				free_temp_map(game, temp_map);
+					handle_error("Cannot duplicate map", NULL);
+				free_arr(temp_map, game->row_count);
+				// free_temp_map(game, temp_map);
 				temp_map = new_map;
 				// printf("new map\n");
 			}

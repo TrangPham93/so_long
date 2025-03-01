@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/02/28 21:44:19 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/01 15:09:12 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int	main(int ac, char **av)
 		
 	data.game = &game;
 	if (ac != 2)
-		handle_error("No map is chosen");
+		handle_error("No map is chosen", NULL);
 	init_data(&data);
 	// printf("now read maps\n");
-	read_map(av[1], &game);
+	read_map(av[1], &data);
 	// printf("read map succeed\n");
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
-		handle_error("Failed to initialize Mlx");
+		handle_error("Failed to initialize Mlx", NULL);
 	load_window(&data);
 	load_asset(&data);
 	mlx_hook(data.mlx_win, KeyPress, KeyPressMask, &on_keypress , &data);
