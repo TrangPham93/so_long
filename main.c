@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/01 16:43:51 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/01 17:16:08 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	main(int ac, char **av)
 		&data);
 	render_image(&data);
 	mlx_loop(data.mlx_ptr);
+	on_destroy(&data);
 	return (0);
 }
 
@@ -102,7 +103,8 @@ int	on_keypress(int keycode, t_data *data)
 
 int	on_destroy(t_data *data)
 {
-	free_arr(data->game->map, data->game->row_count);
+	if (data->game->map)
+		free_arr(data->game->map, data->game->row_count);
 	if (data->mlx_ptr && data->img_background)
 		mlx_destroy_image(data->mlx_ptr, data->img_background);
 	if (data->mlx_ptr && data->img_collects)
