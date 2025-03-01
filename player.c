@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:51 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/01 16:35:09 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/01 17:49:49 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void	move_player(t_data *data, int new_x, int new_y)
 	if (next_location == '1' || (next_location == 'E'
 			&& data->game->total_collect < data->game->collectible_count))
 		return ;
-	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img_background,
-		data->game->player.x * IMG_W, data->game->player.y * IMG_H);
+	// mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img_background,
+		// data->game->player.x * IMG_W, data->game->player.y * IMG_H);
 	if (next_location == 'C')
 	{
 		data->game->total_collect++;
 		data->game->map[new_y][new_x] = '0';
-		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
-			data->img_background, new_x * IMG_W, new_y * IMG_H);
+		// mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
+			// data->img_background, new_x * IMG_W, new_y * IMG_H);
 	}
 	if (next_location == 'E'
 		&& data->game->total_collect == data->game->collectible_count)
@@ -38,10 +38,9 @@ void	move_player(t_data *data, int new_x, int new_y)
 	data->game->player.x = new_x;
 	data->game->player.y = new_y;
 	data->game->total_move++;
-	// load_asset(data);
-	// render_image(data);
-	render_img_player(data);
-	render_movement_count(data);
+	render_image(data);
+	// render_img_player(data);
+	// render_movement_count(data);
 }
 
 void	render_movement_count(t_data *data)

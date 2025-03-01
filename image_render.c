@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:35 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/01 17:20:05 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/01 17:49:35 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ void	load_window(t_data *data)
 	}
 }
 
-// void	load_background(t_data *data)
-// {
-	
-// }
+void	render_image(t_data *data)
+{
+	render_img_background(data);
+	render_img_exit_wall(data);
+	render_img_collectibles(data);
+	render_img_player(data);
+	render_movement_count(data);
+}
 
-// void	load_images(t_data *data)
-// {
-	
-// }
 void	render_img_background(t_data *data)
 {
 	int		i;
@@ -59,7 +59,6 @@ void	render_img_exit_wall(t_data *data)
 	int	i;
 	int	j;
 
-	// load_images(data);
 	i = -1;
 	while (++i < data->game->row_count)
 	{
@@ -96,67 +95,4 @@ void	render_img_collectibles(t_data *data)
 					data->img_collects, j * IMG_W, i * IMG_H);
 		}
 	}
-}
-
-void	handle_error(char *s, char *to_free)
-{
-	if (to_free)
-		free(to_free);
-	ft_putstr_fd("Error\n", 1);
-	ft_putstr_fd(s, 2);
-	// perror(s);
-	exit(-1);
-}
-
-void	print_map(char **map, t_game *game)
-{
-	int	i;
-
-	i = 0;
-	if (!map)
-		handle_error("there is no map to print", NULL);
-	while (i < game->row_count)
-	{
-		printf("%s\n", map[i]);
-		i++;
-	}
-}
-
-
-void	free_arr(char **arr, int count)
-{
-	int	i;
-
-	if (!arr)
-		return ;
-	i = 0;
-	while (i < count)
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-}
-
-// void	free_map(t_data *data)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < data->game->row_count)
-// 	{
-// 		free(data->game->map[i]);
-// 		i++;
-// 	}
-// 	free(data->game->map);
-// }
-
-void	winner_print(void)
-{
-	ft_printf("-----------------------------------------------\n");
-	ft_printf("|    🎉🎉🎉  Congratulations!!!!!  🎉🎉🎉     |\n");
-	ft_printf("|    You found all collectibles and exit.     |\n");
-	ft_printf("|        ✓✓✓✓✓✓✓✓ You won! ✓✓✓✓✓✓✓✓           |\n");
-	ft_printf("-----------------------------------------------\n");
-	exit(0);
 }

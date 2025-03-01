@@ -6,12 +6,12 @@
 #    By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 10:30:26 by trpham            #+#    #+#              #
-#    Updated: 2025/02/28 21:49:48 by trpham           ###   ########.fr        #
+#    Updated: 2025/03/01 18:24:47 by trpham           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 SRCS = main.c \
 		helper.c \
