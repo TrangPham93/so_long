@@ -6,7 +6,7 @@
 #    By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 10:30:26 by trpham            #+#    #+#              #
-#    Updated: 2025/03/01 18:24:47 by trpham           ###   ########.fr        #
+#    Updated: 2025/03/02 10:59:19 by trpham           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,12 +34,21 @@ LIBFT_NAME = $(LIBFT_DIR)/libft.a
 # MLX configuration
 MLX_DIR = ./mlx
 MLX_LIB = $(MLX_DIR)/libmlx.a
-MLX_FLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib/X11 -lXext -lX11 -lm -lz 
+MLX_FLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib/X11 -lXext -lX11 -lm -lz
+MLX_REPO = https://github.com/42Paris/minilibx-linux.git
 
-all: $(NAME)
+all: check_mlx $(NAME)
+
+# checking whether mlx library has been installed
+check_mlx:
+	@if [ ! -d "$(MLX_DIR)" ]; then \
+		echo "MLX not found, cloning into $(MLX_DIR)"; \
+		git clone $(MLX_REPO) mlx; \
+		make -C $(MLX_DIR); \
+	fi
 
 # Contains the X11 and MLX header files
-INCLUDES = -I/usr/include -Imlx -I$(LIBFT_DIR)
+INCLUDES = -I/usr/include -I$(MLX_DIR) -I$(LIBFT_DIR)
 
 %.o: %.c so_long.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@ 
