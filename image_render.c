@@ -37,10 +37,9 @@ void	render_image(t_data *data)
 
 void	render_img_background(t_data *data)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
-	
 	i = -1;
 	while (++i < data->game->row_count)
 	{
@@ -52,7 +51,6 @@ void	render_img_background(t_data *data)
 		}
 	}
 }
-
 
 void	render_img_exit_wall(t_data *data)
 {

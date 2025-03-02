@@ -6,12 +6,11 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:45:07 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/01 17:43:45 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/02 11:01:23 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 int	on_keypress(int keycode, t_data *data)
 {

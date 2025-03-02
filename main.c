@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/01 19:00:44 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/02 11:01:36 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int ac, char **av)
 {
 	t_game	game;
 	t_data	data;
-		
+
 	data.game = &game;
 	if (ac != 2)
 		handle_error("No map is chosen", NULL);
@@ -30,14 +30,11 @@ int	main(int ac, char **av)
 	}
 	load_window(&data);
 	load_asset(&data);
-	mlx_hook(data.mlx_win, KeyPress, KeyPressMask, &on_keypress , &data);
+	mlx_hook(data.mlx_win, KeyPress, KeyPressMask, &on_keypress, &data);
 	mlx_hook(data.mlx_win, DestroyNotify, StructureNotifyMask, &on_destroy,
 		&data);
 	render_image(&data);
 	mlx_loop(data.mlx_ptr);
-	// ft_printf("hey.....\n");
-	// free_arr(game.map, game.row_count); //this is not necesary
-	// on_destroy(&data);
 	return (0);
 }
 
@@ -60,7 +57,7 @@ void	load_asset(t_data *data)
 	img_height = IMG_H;
 	img_width = IMG_W;
 	data->img_background = mlx_xpm_file_to_image(data->mlx_ptr,
-		"./images/tiles.xpm", &img_width, &img_height);
+			"./images/tiles.xpm", &img_width, &img_height);
 	data->img_wall = mlx_xpm_file_to_image(data->mlx_ptr, "./images/wall.xpm",
 			&img_width, &img_height);
 	data->img_player = mlx_xpm_file_to_image(data->mlx_ptr, "./images/cow.xpm",
@@ -76,4 +73,3 @@ void	load_asset(t_data *data)
 		handle_error("Failed to load image", NULL);
 	}
 }
-

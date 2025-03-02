@@ -6,12 +6,11 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 17:07:10 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/01 17:51:04 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/02 11:17:37 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 void	is_valid_filename(const char *str)
 {
@@ -49,25 +48,48 @@ int	not_allowed_element(t_game *game)
 	return (0);
 }
 
-int	check_path(t_game *game)
+int	is_rectangular(t_game *game)
 {
-	char	**temp_map;
-	int		is_valid;
+	int	i;
+	int	len;
+	int	std_len;
 
-	temp_map = duplicate_map(game);
-	if (!temp_map)
-		handle_error("Cannot duplicate map", NULL);
-	is_valid = exit_reachable(game, temp_map, game->player.x, game->player.y);
-	free_arr(temp_map, game->row_count);
-	if (is_valid != 0)
-		handle_error("Cannot reach exit on map", NULL);
-	temp_map = duplicate_map(game);
-	if (!temp_map)
-		handle_error("Cannot duplicate map", NULL);
-	is_valid = check_all_collectables(game, temp_map);
-	free_arr(temp_map, game->row_count);
-	if (is_valid != 0)
-		handle_error("Cannot reach collectable on map", NULL);
+	i = 0;
+	std_len = ft_strlen((game->map)[0]);
+	while (i < (*game).row_count)
+	{
+		len = ft_strlen((game->map)[i]);
+		if (len != std_len)
+			return (-1);
+		i++;
+	}
+	game->col_count = std_len;
+	return (0);
+}
+
+int	is_walled(t_game *game)
+{
+	int	i;
+	int	j;
+	int	last_row;
+	int	last_col;
+
+	i = 0;
+	j = 0;
+	last_row = (*game).row_count - 1;
+	last_col = (*game).col_count - 1;
+	while (j <= last_col)
+	{
+		if ((game->map)[0][j] != '1' || (game->map)[last_row][j] != '1')
+			return (-1);
+		j++;
+	}
+	while (i <= last_row)
+	{
+		if ((game->map)[i][0] != '1' || (game->map)[i][last_col] != '1')
+			return (-1);
+		i++;
+	}
 	return (0);
 }
 

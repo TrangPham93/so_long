@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:39:11 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/01 17:54:47 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/02 11:32:54 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include <stdlib.h>
-// # include <stdio.h> // for perror()
 # include "./libft/includes/get_next_line.h"
 # include "./libft/includes/libft.h"
 # include "./libft/includes/ft_printf.h"
@@ -37,8 +36,8 @@
 
 typedef struct s_axis
 {
-	int		x; //col == j
-	int		y; //row == i
+	int		x;
+	int		y;
 }	t_axis;
 
 typedef struct s_game
@@ -68,15 +67,18 @@ typedef struct s_data
 
 }	t_data;
 
+// initialize data structure
 void	init_data(t_data *data);
 
 // read map and validate the maps
 void	read_map(const char *file_name, t_data *data);
+char	*read_and_join_line(int fd);
 void	is_valid_filename(const char *str);
 void	validate_map(char *str, t_data *data);
 int		is_rectangular(t_game *game);
 int		is_walled(t_game *game);
-int		have_three_elements(t_game *game);
+int		one_player_and_exit(t_game *game);
+int		collectible_exist(t_game *game);
 int		not_allowed_element(t_game *game);
 char	**duplicate_map(t_game *game);
 void	reset_temp_map(t_game *game, char **temp_map);
@@ -87,6 +89,7 @@ int		exit_reachable(t_game *game, char **temp_map, int x, int y);
 int		collectables_reachable(t_game *game, char **temp_map, int x, int y);
 int		check_all_collectables(t_game *game, char **temp_map);
 
+// load assets
 void	load_window(t_data *data);
 void	load_asset(t_data *data);
 
@@ -103,11 +106,9 @@ int		on_keypress(int keycode, t_data *data);
 void	move_player(t_data *data, int new_x, int new_y);
 int		on_destroy(t_data *data);
 
+// helper function
 void	handle_error(char *s, char *to_free);
-void	winner_print();
+void	winner_print(void);
 void	free_arr(char **arr, int count);
-
-//please delete before submit
-void	print_map(char **map, t_game *game);
 
 #endif
