@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/03 16:39:07 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/03 16:55:56 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	load_asset(t_data *data)
 			"./textures/tiles.xpm", &img_width, &img_height);
 	data->img_wall = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/wall.xpm",
 			&img_width, &img_height);
-	data->img_player = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/cow.xpm",
-			&img_width, &img_height);
+	data->img_player = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./textures/cow.xpm", &img_width, &img_height);
 	data->img_exit = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/exit.xpm",
 			&img_width, &img_height);
 	data->img_collects = mlx_xpm_file_to_image(data->mlx_ptr,

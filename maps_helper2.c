@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:43:22 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/03 16:46:47 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/03 16:55:12 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int	exit_reachable(t_game *game, char **temp_map, int x, int y)
 int	collectables_reachable(t_game *game, char **temp_map, int x, int y)
 {
 	if (x < 1 || x >= game->col_count - 1 || y < 1 || y >= game->row_count - 1
-		|| temp_map[y][x] == '1' || temp_map[y][x] == 'V' || temp_map[y][x] == 'E')
+		|| temp_map[y][x] == '1' || temp_map[y][x] == 'V'
+		|| temp_map[y][x] == 'E')
 		return (-1);
 	if (temp_map[y][x] == 'P')
 		return (0);
