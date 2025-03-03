@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:26 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/03 16:56:34 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/03 17:27:01 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,34 +126,3 @@ int	collectible_exist(t_game *game)
 		return (-1);
 	return (0);
 }
-
-// if (is_rectangular(data->game))
-	// {
-	// 	free_arr(data->game->map, data->game->row_count);
-	// 	handle_error("Not retangular!", str);
-	// }
-	// else if (is_walled(data->game))
-	// {
-	// 	free_arr(data->game->map, data->game->row_count);
-	// 	handle_error("Not wall map!", str);
-	// }
-	// else if (one_player_and_exit(data->game))
-	// {
-	// 	free_arr(data->game->map, data->game->row_count);
-	// 	handle_error("one player and exitmap!", str);
-	// }
-	// else if (collectible_exist(data->game))
-	// {
-	// 	free_arr(data->game->map, data->game->row_count);
-	// 	handle_error("no collectible map!", str);
-	// }
-	// else if (not_allowed_element(data->game))
-	// {
-	// 	free_arr(data->game->map, data->game->row_count);
-	// 	handle_error("not allowed element map!", str);
-	// }
-	// else if (check_path(data->game))
-	// {
-	// 	free_arr(data->game->map, data->game->row_count);
-	// 	handle_error("path not reachable!", str);
-	// }

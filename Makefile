@@ -6,7 +6,7 @@
 #    By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 10:30:26 by trpham            #+#    #+#              #
-#    Updated: 2025/03/03 16:41:54 by trpham           ###   ########.fr        #
+#    Updated: 2025/03/03 17:26:52 by trpham           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,6 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 
 SRCS = main.c \
-		key_input.c \
 		maps.c \
 		maps_helper1.c \
 		maps_helper2.c \
