@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/02 11:01:36 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/03 11:38:21 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ void	load_asset(t_data *data)
 	img_height = IMG_H;
 	img_width = IMG_W;
 	data->img_background = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./images/tiles.xpm", &img_width, &img_height);
-	data->img_wall = mlx_xpm_file_to_image(data->mlx_ptr, "./images/wall.xpm",
+			"./textures/tiles.xpm", &img_width, &img_height);
+	data->img_wall = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/wall.xpm",
 			&img_width, &img_height);
-	data->img_player = mlx_xpm_file_to_image(data->mlx_ptr, "./images/cow.xpm",
+	data->img_player = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/cow.xpm",
 			&img_width, &img_height);
-	data->img_exit = mlx_xpm_file_to_image(data->mlx_ptr, "./images/exit.xpm",
+	data->img_exit = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/exit.xpm",
 			&img_width, &img_height);
 	data->img_collects = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./images/milk.xpm", &img_width, &img_height);
+			"./textures/milk.xpm", &img_width, &img_height);
 	if (!data->img_exit || !data->img_collects || !data->img_player
 		|| !data->img_wall || !data->img_background)
 	{
