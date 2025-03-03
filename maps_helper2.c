@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:43:22 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/02 11:17:29 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/03 16:46:47 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,22 @@ int	check_path(t_game *game)
 
 	temp_map = duplicate_map(game);
 	if (!temp_map)
-		handle_error("Cannot duplicate map", NULL);
+		return (-1);
 	is_valid = exit_reachable(game, temp_map, game->player.x, game->player.y);
 	free_arr(temp_map, game->row_count);
 	if (is_valid != 0)
-		handle_error("Cannot reach exit on map", NULL);
+	{
+		return (-1);
+	}
 	temp_map = duplicate_map(game);
 	if (!temp_map)
-		handle_error("Cannot duplicate map", NULL);
+		return (-1);
 	is_valid = check_all_collectables(game, temp_map);
 	free_arr(temp_map, game->row_count);
 	if (is_valid != 0)
-		handle_error("Cannot reach collectable on map", NULL);
+	{
+		return (-1);
+	}
 	return (0);
 }
 
@@ -52,7 +56,7 @@ int	exit_reachable(t_game *game, char **temp_map, int x, int y)
 int	collectables_reachable(t_game *game, char **temp_map, int x, int y)
 {
 	if (x < 1 || x >= game->col_count - 1 || y < 1 || y >= game->row_count - 1
-		|| temp_map[y][x] == '1' || temp_map[y][x] == 'V')
+		|| temp_map[y][x] == '1' || temp_map[y][x] == 'V' || temp_map[y][x] == 'E')
 		return (-1);
 	if (temp_map[y][x] == 'P')
 		return (0);

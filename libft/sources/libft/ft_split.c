@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 09:26:36 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/01 17:20:40 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/03 16:40:45 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ static char	*ft_word_extract(const char *s, char c)
 	word = ft_substr(s, 0, word_len);
 	if (!word)
 	{
-		ft_putstr_fd("fail in substr\n", 2); // remember to delete
 		return (NULL);
 	}
 	return (word);
@@ -76,7 +75,6 @@ static char	**ft_process(char const *s, char c, size_t i, char **words_arr)
 			if (words_arr[i] == NULL)
 			{
 				ft_free_words_arr(words_arr, i);
-				// free(words_arr); //delete
 				return (NULL);
 			}
 			i++;
@@ -104,16 +102,7 @@ char	**ft_split(char const *s, char c)
 	words_arr = ft_process(s, c, i, words_arr);
 	if (!words_arr)
 	{
-		// ft_free_words_arr(words_arr, word_count);
 		return (NULL);
 	}
 	return (words_arr);
 }
-// int	main(void)
-// {
-// 	char *s = "1 2 3";
-// 	char	**arr = ft_split(s, ' ');
-// 	for (int i=0; i < 3; i++)
-// 		printf("%s\n", arr[i]);
-// 	ft_free_words_arr(arr, ft_countword(s, ' '));
-// }

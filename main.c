@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/03 11:38:21 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/03 16:39:07 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,13 @@ void	load_asset(t_data *data)
 		on_destroy(data);
 		handle_error("Failed to load image", NULL);
 	}
+}
+
+void	winner_print(void)
+{
+	ft_printf("-----------------------------------------------\n");
+	ft_printf("|    🎉🎉🎉  Congratulations!!!!!  🎉🎉🎉     |\n");
+	ft_printf("|    You found all collectibles and exit.     |\n");
+	ft_printf("|        ✓✓✓✓✓✓✓✓ You won! ✓✓✓✓✓✓✓✓           |\n");
+	ft_printf("-----------------------------------------------\n");
 }

@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:26 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/02 11:30:25 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/03 16:36:01 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	read_map(const char *file_name, t_data *data)
 	if (fd == -1)
 		handle_error("Failed to open map", NULL);
 	read_str = read_and_join_line(fd);
+	if (ft_strcmp(read_str, "") == 0)
+		handle_error("Map is empty", read_str);
 	validate_map(read_str, data);
 	close(fd);
 }
@@ -59,7 +61,7 @@ void	validate_map(char *str, t_data *data)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '\n')
+		if (str[i] == '\n' && str[i- 1] != '\n')
 			row_count++;
 		i++;
 	}
@@ -72,8 +74,38 @@ void	validate_map(char *str, t_data *data)
 		|| not_allowed_element(data->game) || check_path(data->game))
 	{
 		free_arr(data->game->map, data->game->row_count);
-		handle_error("This is a bad map, please use another map!", str);
+		handle_error("Invalid map!", str);
 	}
+	// if (is_rectangular(data->game))
+	// {
+	// 	free_arr(data->game->map, data->game->row_count);
+	// 	handle_error("Not retangular!", str);
+	// }
+	// else if (is_walled(data->game))
+	// {
+	// 	free_arr(data->game->map, data->game->row_count);
+	// 	handle_error("Not wall map!", str);
+	// }
+	// else if (one_player_and_exit(data->game))
+	// {
+	// 	free_arr(data->game->map, data->game->row_count);
+	// 	handle_error("one player and exitmap!", str);
+	// }
+	// else if (collectible_exist(data->game))
+	// {
+	// 	free_arr(data->game->map, data->game->row_count);
+	// 	handle_error("no collectible map!", str);
+	// }
+	// else if (not_allowed_element(data->game))
+	// {
+	// 	free_arr(data->game->map, data->game->row_count);
+	// 	handle_error("not allowed element map!", str);
+	// }
+	// else if (check_path(data->game))
+	// {
+	// 	free_arr(data->game->map, data->game->row_count);
+	// 	handle_error("path not reachable!", str);
+	// }
 	free(str);
 }
 
