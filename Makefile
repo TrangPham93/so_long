@@ -6,7 +6,7 @@
 #    By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 10:30:26 by trpham            #+#    #+#              #
-#    Updated: 2025/03/04 17:36:03 by trpham           ###   ########.fr        #
+#    Updated: 2025/03/04 18:46:31 by trpham           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ $(MLX_DIR):
 	git clone $(MLX_REPO) mlx;
 
 # Contains the X11 and MLX header files
-INCLUDES = -I/usr/include -I$(MLX_DIR) -I$(LIBFT_DIR)
+INCLUDES = -I$(MLX_DIR) -I$(LIBFT_DIR)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@ 

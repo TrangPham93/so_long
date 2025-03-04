@@ -6,11 +6,11 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:51 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/04 17:13:13 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/04 18:47:58 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/so_long.h"
+#include "so_long.h"
 
 void	move_player(t_data *data, int new_x, int new_y)
 {

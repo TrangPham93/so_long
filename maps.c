@@ -6,11 +6,11 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:26 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/04 18:31:48 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/04 18:47:56 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/so_long.h"
+#include "so_long.h"
 
 void	read_map(const char *file_name, t_data *data)
 {
@@ -47,10 +47,8 @@ char	*read_and_join_line(int fd)
 	row = get_next_line(fd);
 	if (!row)
 	{
-		free(read_str);
-		// free(row);
 		close(fd);
-		handle_error("Not a file", NULL);
+		handle_error("Not a file", read_str);
 	}
 	while (row)
 	{
@@ -66,15 +64,6 @@ char	*read_and_join_line(int fd)
 	return (read_str);
 }
 
-// void	handle_error(char *s, char *to_free)
-// {
-// 	if (to_free)
-// 		free(to_free);
-// 	ft_putstr_fd("Error\n", 2);
-// 	ft_putstr_fd(s, 2);
-// 	ft_putstr_fd("\n", 2);
-// 	exit(-1);
-// }
 int	validate_map(char *str, t_data *data)
 {
 	int	row_count;
