@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:26 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/04 18:13:43 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/04 18:31:48 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*read_and_join_line(int fd)
 	if (!row)
 	{
 		free(read_str);
-		free(row);
+		// free(row);
 		close(fd);
 		handle_error("Not a file", NULL);
 	}
@@ -62,10 +62,19 @@ char	*read_and_join_line(int fd)
 		read_str = temp;
 		row = get_next_line(fd);
 	}
-	// free(row);
+	free(row);
 	return (read_str);
 }
 
+// void	handle_error(char *s, char *to_free)
+// {
+// 	if (to_free)
+// 		free(to_free);
+// 	ft_putstr_fd("Error\n", 2);
+// 	ft_putstr_fd(s, 2);
+// 	ft_putstr_fd("\n", 2);
+// 	exit(-1);
+// }
 int	validate_map(char *str, t_data *data)
 {
 	int	row_count;
