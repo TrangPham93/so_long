@@ -6,11 +6,11 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:51 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/03 17:26:20 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/04 17:13:13 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "./include/so_long.h"
 
 void	move_player(t_data *data, int new_x, int new_y)
 {
@@ -29,7 +29,7 @@ void	move_player(t_data *data, int new_x, int new_y)
 		&& data->game->total_collect == data->game->collectible_count)
 	{
 		winner_print();
-		on_destroy((void *)data);
+		on_destroy(data);
 	}
 	data->game->player.x = new_x;
 	data->game->player.y = new_y;

@@ -6,11 +6,11 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:26 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/03 17:27:01 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/04 18:13:43 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "./include/so_long.h"
 
 void	read_map(const char *file_name, t_data *data)
 {
@@ -23,8 +23,15 @@ void	read_map(const char *file_name, t_data *data)
 		handle_error("Failed to open map", NULL);
 	read_str = read_and_join_line(fd);
 	if (ft_strcmp(read_str, "") == 0)
+	{
+		close(fd);
 		handle_error("Map is empty", read_str);
-	validate_map(read_str, data);
+	}
+	if (validate_map(read_str, data) == -1)
+	{
+		close(fd);
+		handle_error("Invalid map", read_str);
+	}
 	close(fd);
 }
 
@@ -37,22 +44,29 @@ char	*read_and_join_line(int fd)
 	read_str = ft_strdup("");
 	if (!read_str)
 		handle_error("Memory allocation failed\n", read_str);
-	while (1)
+	row = get_next_line(fd);
+	if (!row)
 	{
-		row = get_next_line(fd);
-		if (!row)
-			break ;
+		free(read_str);
+		free(row);
+		close(fd);
+		handle_error("Not a file", NULL);
+	}
+	while (row)
+	{
 		temp = ft_strjoin(read_str, row);
 		free(row);
 		free(read_str);
 		if (!temp)
-			handle_error("String join failed\n", NULL);
+			handle_error("String join failed", NULL);
 		read_str = temp;
+		row = get_next_line(fd);
 	}
+	// free(row);
 	return (read_str);
 }
 
-void	validate_map(char *str, t_data *data)
+int	validate_map(char *str, t_data *data)
 {
 	int	row_count;
 	int	i;
@@ -62,21 +76,21 @@ void	validate_map(char *str, t_data *data)
 	while (str[i])
 	{
 		if (str[i] == '\n' && str[i - 1] != '\n')
-			row_count++;
+			return (-1);
 		i++;
 	}
 	data->game->row_count = row_count;
 	data->game->map = ft_split(str, '\n');
 	if (!data->game->map)
-		handle_error("Memory allocation failed in ft_split\n", str);
+		return (-1);
 	if (is_rectangular(data->game) || is_walled(data->game)
 		|| one_player_and_exit(data->game) || collectible_exist(data->game)
 		|| not_allowed_element(data->game) || check_path(data->game))
 	{
 		free_arr(data->game->map, data->game->row_count);
-		handle_error("Invalid map!", str);
+		return (-1);
 	}
-	free(str);
+	return (0);
 }
 
 int	one_player_and_exit(t_game *game)
@@ -84,8 +98,8 @@ int	one_player_and_exit(t_game *game)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i++ < (*game).row_count - 1)
+	i = 1;
+	while (i < (*game).row_count - 1)
 	{
 		j = 1;
 		while (j < (*game).col_count - 1)
@@ -100,6 +114,7 @@ int	one_player_and_exit(t_game *game)
 				(*game).exit_count++;
 			j++;
 		}
+		i++;
 	}
 	if ((*game).player_count != 1 || (*game).exit_count != 1)
 		return (-1);
@@ -111,8 +126,8 @@ int	collectible_exist(t_game *game)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i++ < (*game).row_count - 1)
+	i = 1;
+	while (i < (*game).row_count - 1)
 	{
 		j = 1;
 		while (j < (*game).col_count - 1)
@@ -121,6 +136,7 @@ int	collectible_exist(t_game *game)
 				(*game).collectible_count++;
 			j++;
 		}
+		i++;
 	}
 	if ((*game).collectible_count < 1)
 		return (-1);

@@ -6,11 +6,11 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:43:22 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/03 16:55:12 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/04 17:13:53 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "./include/so_long.h"
 
 int	check_path(t_game *game)
 {
@@ -23,18 +23,14 @@ int	check_path(t_game *game)
 	is_valid = exit_reachable(game, temp_map, game->player.x, game->player.y);
 	free_arr(temp_map, game->row_count);
 	if (is_valid != 0)
-	{
 		return (-1);
-	}
 	temp_map = duplicate_map(game);
 	if (!temp_map)
 		return (-1);
 	is_valid = check_all_collectables(game, temp_map);
 	free_arr(temp_map, game->row_count);
 	if (is_valid != 0)
-	{
 		return (-1);
-	}
 	return (0);
 }
 
@@ -46,9 +42,10 @@ int	exit_reachable(t_game *game, char **temp_map, int x, int y)
 	if (temp_map[y][x] == 'E')
 		return (0);
 	temp_map[y][x] = 'V';
-	if (exit_reachable(game, temp_map, x + 1, y) == 0 || exit_reachable(game,
-			temp_map, x - 1, y) == 0 || exit_reachable(game, temp_map, x, y
-			+ 1) == 0 || exit_reachable(game, temp_map, x, y - 1) == 0)
+	if (exit_reachable(game, temp_map, x + 1, y) == 0
+		|| exit_reachable(game, temp_map, x - 1, y) == 0
+		|| exit_reachable(game, temp_map, x, y + 1) == 0
+		|| exit_reachable(game, temp_map, x, y - 1) == 0)
 		return (0);
 	return (-1);
 }
@@ -84,9 +81,7 @@ int	check_all_collectables(t_game *game, char **temp_map)
 			if (temp_map[i][j] == 'C')
 			{
 				if (collectables_reachable(game, temp_map, j, i) != 0)
-				{
 					return (-1);
-				}
 				reset_temp_map(game, temp_map);
 			}
 			j++;

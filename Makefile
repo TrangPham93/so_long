@@ -6,7 +6,7 @@
 #    By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 10:30:26 by trpham            #+#    #+#              #
-#    Updated: 2025/03/03 17:26:52 by trpham           ###   ########.fr        #
+#    Updated: 2025/03/04 17:36:03 by trpham           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,20 +33,16 @@ MLX_LIB = $(MLX_DIR)/libmlx.a
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib/X11 -lXext -lX11 -lm -lz
 MLX_REPO = https://github.com/42Paris/minilibx-linux.git
 
-all: check_mlx $(NAME)
+	
+all: $(MLX_DIR) $(NAME)
 
-# checking whether mlx library has been installed
-check_mlx:
-	@if [ ! -d "$(MLX_DIR)" ]; then \
-		echo "MLX not found, cloning into $(MLX_DIR)"; \
-		git clone $(MLX_REPO) mlx; \
-		make -C $(MLX_DIR); \
-	fi
+$(MLX_DIR):
+	git clone $(MLX_REPO) mlx;
 
 # Contains the X11 and MLX header files
 INCLUDES = -I/usr/include -I$(MLX_DIR) -I$(LIBFT_DIR)
 
-%.o: %.c so_long.h
+%.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@ 
 
 $(NAME): $(OBJS) $(LIBFT_NAME) $(MLX_LIB)
@@ -70,4 +66,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-

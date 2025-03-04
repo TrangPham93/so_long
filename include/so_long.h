@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:39:11 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/03 17:21:29 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:59:09 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include <stdlib.h>
-# include "./libft/includes/get_next_line.h"
-# include "./libft/includes/libft.h"
-# include "./libft/includes/ft_printf.h"
+# include "../libft/includes/get_next_line.h"
+# include "../libft/includes/libft.h"
+# include "../libft/includes/ft_printf.h"
 # include <X11/X.h>
 
 # define IMG_W 32
@@ -48,7 +48,6 @@ typedef struct s_game
 	int		exit_count;
 	int		collectible_count;
 	t_axis	player;
-	t_axis	exit;
 	int		total_move;
 	int		total_collect;
 }	t_game;
@@ -73,7 +72,7 @@ void	init_data(t_data *data);
 void	read_map(const char *file_name, t_data *data);
 char	*read_and_join_line(int fd);
 void	is_valid_filename(const char *str);
-void	validate_map(char *str, t_data *data);
+int		validate_map(char *str, t_data *data);
 int		is_rectangular(t_game *game);
 int		is_walled(t_game *game);
 int		one_player_and_exit(t_game *game);

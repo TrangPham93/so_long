@@ -6,11 +6,11 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/03 17:24:52 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/04 16:52:09 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "./include/so_long.h"
 
 int	main(int ac, char **av)
 {
@@ -19,7 +19,10 @@ int	main(int ac, char **av)
 
 	data.game = &game;
 	if (ac != 2)
+	{
 		handle_error("No map is chosen", NULL);
+		exit (-1);
+	}
 	init_data(&data);
 	read_map(av[1], &data);
 	data.mlx_ptr = mlx_init();
@@ -69,8 +72,8 @@ void	load_asset(t_data *data)
 	if (!data->img_exit || !data->img_collects || !data->img_player
 		|| !data->img_wall || !data->img_background)
 	{
+		ft_printf("Failed to load textures\n");
 		on_destroy(data);
-		handle_error("Failed to load image", NULL);
 	}
 }
 

@@ -6,11 +6,11 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:35 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/03 17:24:36 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:58:27 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "./include/so_long.h"
 
 void	load_window(t_data *data)
 {
@@ -64,8 +64,6 @@ void	render_img_exit_wall(t_data *data)
 		{
 			if ((data->game->map)[i][j] == 'E')
 			{
-				data->game->exit.y = i;
-				data->game->exit.x = j;
 				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
 					data->img_exit, j * IMG_W, i * IMG_H);
 			}
