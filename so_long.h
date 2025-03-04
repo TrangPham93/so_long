@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:39:11 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/04 18:48:20 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/04 21:25:01 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,6 @@ int		on_destroy(t_data *data);
 void	handle_error(char *s, char *to_free);
 void	winner_print(void);
 void	free_arr(char **arr, int count);
+void	ft_free(char *ptr);
 
 #endif

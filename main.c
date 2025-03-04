@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/04 18:47:44 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/04 21:27:16 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,14 @@ int	main(int ac, char **av)
 
 	data.game = &game;
 	if (ac != 2)
-	{
 		handle_error("No map is chosen", NULL);
-		exit (-1);
-	}
 	init_data(&data);
 	read_map(av[1], &data);
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
 	{
 		free_arr(game.map, game.row_count);
+		game.map = NULL;
 		handle_error("Failed to initialize Mlx", NULL);
 	}
 	load_window(&data);
@@ -95,7 +93,10 @@ int	on_keypress(int keycode, t_data *data)
 int	on_destroy(t_data *data)
 {
 	if (data->game->map)
+	{
 		free_arr(data->game->map, data->game->row_count);
+		data->game->map = NULL;
+	}
 	if (data->mlx_ptr && data->img_background)
 		mlx_destroy_image(data->mlx_ptr, data->img_background);
 	if (data->mlx_ptr && data->img_collects)

@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:51 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/04 18:47:58 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/04 21:18:46 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,10 @@ void	free_arr(char **arr, int count)
 	while (i < count)
 	{
 		if (arr[i])
+		{
 			free(arr[i]);
+			arr[i] = NULL;
+		}
 		i++;
 	}
 	free(arr);

@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:26 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/04 18:47:56 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/04 21:41:56 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ char	*read_and_join_line(int fd)
 	while (row)
 	{
 		temp = ft_strjoin(read_str, row);
-		free(row);
-		free(read_str);
+		ft_free(row);
+		ft_free(read_str);
 		if (!temp)
 			handle_error("String join failed", NULL);
 		read_str = temp;
@@ -73,8 +73,10 @@ int	validate_map(char *str, t_data *data)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '\n' && str[i - 1] != '\n')
+		if (str[i] == '\n' && str[i - 1] == '\n')
 			return (-1);
+		if (str[i] == '\n' && str[i - 1] != '\n')
+			row_count++;	
 		i++;
 	}
 	data->game->row_count = row_count;
@@ -86,6 +88,7 @@ int	validate_map(char *str, t_data *data)
 		|| not_allowed_element(data->game) || check_path(data->game))
 	{
 		free_arr(data->game->map, data->game->row_count);
+		data->game->map = NULL;
 		return (-1);
 	}
 	return (0);

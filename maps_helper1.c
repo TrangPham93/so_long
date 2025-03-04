@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 17:07:10 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/04 18:47:49 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/04 21:27:33 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ char	**duplicate_map(t_game *game)
 		if (!temp_map[i])
 		{
 			free_arr(temp_map, i);
+			temp_map = NULL;
 			handle_error("ft_strdup row failed", NULL);
 		}
 		i++;
