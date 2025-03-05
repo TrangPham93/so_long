@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 12:41:27 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 13:30:03 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	load_asset(t_data *data)
 	{
 		handle_error("Failed to load textures", NULL);
 		on_destroy(data);
+		exit(-1);
 	}
 }
 
@@ -115,6 +116,6 @@ int	on_destroy(t_data *data)
 	if (data->mlx_ptr)
 		mlx_destroy_display(data->mlx_ptr);
 	ft_free(data->mlx_ptr);
-	// exit(0);
-	return (0);
+	exit(0);
+	// return (0);
 }

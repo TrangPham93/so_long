@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:26 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 13:00:56 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 13:24:14 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int	validate_map(char *str, t_data *data)
 		handle_error("Split failed", str);
 		return (-1);
 	}
+	ft_free(str);
 	if (is_rectangular(data->game) || is_walled(data->game)
 		|| one_player(data->game) || one_exit(data->game)
 		|| collectible_exist(data->game) || not_allowed_element(data->game)
@@ -117,7 +118,7 @@ int	validate_map(char *str, t_data *data)
 	{
 		free_arr(data->game->map, data->game->row_count);
 		data->game->map = NULL;
-		ft_free(str);
+		// ft_free(str);
 		return (-1);
 	}
 	return (0);
@@ -140,8 +141,6 @@ int	one_player(t_game *game)
 				game->player.y = i;
 				game->player.x = j;
 			}
-			else if ((game->map)[i][j] == 'E')
-				(*game).exit_count++;
 			j++;
 		}
 		i++;
@@ -160,6 +159,8 @@ int	one_exit(t_game *game)
 	int	j;
 
 	i = 1;
+	// ft_printf("%d\n", (*game).exit_count);
+
 	while (i < (*game).row_count - 1)
 	{
 		j = 1;
@@ -171,6 +172,7 @@ int	one_exit(t_game *game)
 		}
 		i++;
 	}
+	// ft_printf("%d\n", (*game).exit_count);
 	if ((*game).exit_count != 1)
 	{
 		handle_error("None or more than 1 exit", NULL);
