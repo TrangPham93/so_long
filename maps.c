@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:26 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 14:46:53 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 15:08:27 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ int	validate_map(char *str, t_data *data)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '\n' && str[i - 1] == '\n')
+		if (str[i] == '\n' && str[i + 1] != '\0' && str[i + 1] == '\n')
 		{
 			handle_error("Invalid map", str);
 			return (-1);
 		}
-		if (str[i] == '\n' && str[i - 1] != '\n')
+		if (str[i] == '\n' && str[i + 1] != '\n')
 			data->game->row_count++;
 		i++;
 	}
