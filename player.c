@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:51 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/04 21:18:46 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 12:47:54 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ void	move_player(t_data *data, int new_x, int new_y)
 	data->game->player.x = new_x;
 	data->game->player.y = new_y;
 	data->game->total_move++;
-	ft_printf("Number of movements : %d\n", data->game->total_move);
+	ft_putstr_fd("Number of movements : ", 1);
+	ft_putnbr_fd(data->game->total_move, 1);
+	ft_putstr_fd("\n", 1);
 	render_image(data);
 }
 
@@ -46,21 +48,24 @@ void	render_img_player(t_data *data)
 
 void	winner_print(void)
 {
-	ft_printf("-----------------------------------------------\n");
-	ft_printf("|    🎉🎉🎉  Congratulations!!!!!  🎉🎉🎉     |\n");
-	ft_printf("|    You found all collectibles and exit.     |\n");
-	ft_printf("|        ✓✓✓✓✓✓✓✓ You won! ✓✓✓✓✓✓✓✓           |\n");
-	ft_printf("-----------------------------------------------\n");
+	ft_putstr_fd("-----------------------------------------------\n", 1);
+	ft_putstr_fd("|    🎉🎉🎉  Congratulations!!!!!  🎉🎉🎉     |\n", 1);
+	ft_putstr_fd("|    You found all collectibles and exit.     |\n", 1);
+	ft_putstr_fd("|        ✓✓✓✓✓✓✓✓ You won! ✓✓✓✓✓✓✓✓           |\n", 1);
+	ft_putstr_fd("-----------------------------------------------\n", 1);
 }
 
 void	handle_error(char *s, char *to_free)
 {
 	if (to_free)
+	{
 		free(to_free);
+		to_free = NULL;
+	}
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(s, 2);
 	ft_putstr_fd("\n", 2);
-	exit(-1);
+	// exit(-1);
 }
 
 void	free_arr(char **arr, int count)

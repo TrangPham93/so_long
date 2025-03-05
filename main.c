@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/04 21:27:16 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 12:41:27 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ int	main(int ac, char **av)
 
 	data.game = &game;
 	if (ac != 2)
+	{
 		handle_error("No map is chosen", NULL);
+		exit(-1);
+	}
 	init_data(&data);
 	read_map(av[1], &data);
 	data.mlx_ptr = mlx_init();
@@ -70,7 +73,7 @@ void	load_asset(t_data *data)
 	if (!data->img_exit || !data->img_collects || !data->img_player
 		|| !data->img_wall || !data->img_background)
 	{
-		ft_printf("Failed to load textures\n");
+		handle_error("Failed to load textures", NULL);
 		on_destroy(data);
 	}
 }
@@ -111,7 +114,7 @@ int	on_destroy(t_data *data)
 		mlx_destroy_window(data->mlx_ptr, data->mlx_win);
 	if (data->mlx_ptr)
 		mlx_destroy_display(data->mlx_ptr);
-	free(data->mlx_ptr);
-	exit(0);
+	ft_free(data->mlx_ptr);
+	// exit(0);
 	return (0);
 }

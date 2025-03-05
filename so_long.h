@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:39:11 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/04 21:25:01 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 12:41:12 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ void	is_valid_filename(const char *str);
 int		validate_map(char *str, t_data *data);
 int		is_rectangular(t_game *game);
 int		is_walled(t_game *game);
-int		one_player_and_exit(t_game *game);
+int		one_player(t_game *game);
+int		one_exit(t_game *game);
 int		collectible_exist(t_game *game);
 int		not_allowed_element(t_game *game);
 char	**duplicate_map(t_game *game);

@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:35 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/04 21:25:14 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 12:52:31 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_free(char *ptr)
 {
-	if (!ptr)
+	if (ptr)
 		free(ptr);
 	ptr = NULL;
 }
@@ -31,6 +31,7 @@ void	load_window(t_data *data)
 			mlx_destroy_display(data->mlx_ptr);
 		ft_free(data->mlx_ptr);
 		handle_error("Failed to initialize a window", NULL);
+		exit(-1);
 	}
 }
 
