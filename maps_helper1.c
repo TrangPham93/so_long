@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 17:07:10 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 13:50:25 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 14:42:33 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,31 +82,28 @@ int	is_rectangular(t_game *game)
 int	is_walled(t_game *game)
 {
 	int	i;
-	int	j;
 	int	last_row;
 	int	last_col;
 
-	i = 0;
-	j = 0;
+	i = -1;
 	last_row = (*game).row_count - 1;
 	last_col = (*game).col_count - 1;
-	while (j <= last_col)
+	while (++i <= last_col)
 	{
-		if ((game->map)[0][j] != '1' || (game->map)[last_row][j] != '1')
+		if ((game->map)[0][i] != '1' || (game->map)[last_row][i] != '1')
 		{
 			handle_error("Not walled map", NULL);
 			return (-1);
 		}
-		j++;
 	}
-	while (i <= last_row)
+	i = -1;
+	while (++i <= last_row)
 	{
 		if ((game->map)[i][0] != '1' || (game->map)[i][last_col] != '1')
 		{
 			handle_error("Not walled map", NULL);
 			return (-1);
 		}
-		i++;
 	}
 	return (0);
 }
