@@ -6,18 +6,11 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:35 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 12:52:31 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 13:46:12 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	ft_free(char *ptr)
-{
-	if (ptr)
-		free(ptr);
-	ptr = NULL;
-}
 
 void	load_window(t_data *data)
 {

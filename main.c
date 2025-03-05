@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 13:30:03 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 14:14:31 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ int	main(int ac, char **av)
 	load_window(&data);
 	load_asset(&data);
 	mlx_hook(data.mlx_win, KeyPress, KeyPressMask, &on_keypress, &data);
-	mlx_hook(data.mlx_win, DestroyNotify, StructureNotifyMask, &on_destroy,
-		&data);
+	mlx_hook(data.mlx_win, DestroyNotify, StructureNotifyMask, &destroy, &data);
 	render_image(&data);
 	mlx_loop(data.mlx_ptr);
 	return (0);
@@ -74,7 +73,7 @@ void	load_asset(t_data *data)
 		|| !data->img_wall || !data->img_background)
 	{
 		handle_error("Failed to load textures", NULL);
-		on_destroy(data);
+		destroy(data);
 		exit(-1);
 	}
 }
@@ -90,11 +89,11 @@ int	on_keypress(int keycode, t_data *data)
 	else if (keycode == AR || keycode == D)
 		move_player(data, data->game->player.x + 1, data->game->player.y);
 	else if (keycode == ESC)
-		on_destroy(data);
+		destroy(data);
 	return (0);
 }
 
-int	on_destroy(t_data *data)
+int	destroy(t_data *data)
 {
 	if (data->game->map)
 	{
@@ -117,5 +116,4 @@ int	on_destroy(t_data *data)
 		mlx_destroy_display(data->mlx_ptr);
 	ft_free(data->mlx_ptr);
 	exit(0);
-	// return (0);
 }

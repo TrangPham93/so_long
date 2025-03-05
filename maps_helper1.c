@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 17:07:10 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 11:51:46 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 13:50:25 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ char	**duplicate_map(t_game *game)
 	if (!temp_map)
 	{
 		handle_error("Memory allocation for temporary map failed", NULL);
-		return(NULL);
+		return (NULL);
 	}
 	i = 0;
 	while (i < game->row_count)

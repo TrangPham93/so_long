@@ -6,7 +6,7 @@
 #    By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 10:30:26 by trpham            #+#    #+#              #
-#    Updated: 2025/03/04 18:46:31 by trpham           ###   ########.fr        #
+#    Updated: 2025/03/05 13:45:38 by trpham           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRCS = main.c \
 		maps_helper1.c \
 		maps_helper2.c \
 		image_render.c \
-		player.c
+		player.c \
+		helper.c
 
 OBJS = $(SRCS:%.c=%.o)
 

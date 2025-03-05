@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:39:11 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 12:41:12 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 14:14:19 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int		collectible_exist(t_game *game);
 int		not_allowed_element(t_game *game);
 char	**duplicate_map(t_game *game);
 void	reset_temp_map(t_game *game, char **temp_map);
+int		check_map_condition(t_data *data);
 
 // check whether the map allows the player to exit and all collectibles
 int		check_path(t_game *game);
@@ -102,12 +103,14 @@ void	render_img_collectibles(t_data *data);
 // keyboard action
 int		on_keypress(int keycode, t_data *data);
 void	move_player(t_data *data, int new_x, int new_y);
-int		on_destroy(t_data *data);
+int		destroy(t_data *data);
 
 // helper function
 void	handle_error(char *s, char *to_free);
 void	winner_print(void);
 void	free_arr(char **arr, int count);
 void	ft_free(char *ptr);
+void	close_file_and_exit(int fd, char *str);
+
 
 #endif

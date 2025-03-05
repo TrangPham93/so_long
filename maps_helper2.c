@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:43:22 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 11:53:20 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 13:51:33 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ int	check_path(t_game *game)
 
 	temp_map = duplicate_map(game);
 	if (!temp_map)
-	{
 		return (-1);
-	}
 	is_valid = exit_reachable(game, temp_map, game->player.x, game->player.y);
 	free_arr(temp_map, game->row_count);
 	temp_map = NULL;

@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:51 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 12:47:54 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 14:14:14 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	move_player(t_data *data, int new_x, int new_y)
 		&& data->game->total_collect == data->game->collectible_count)
 	{
 		winner_print();
-		on_destroy(data);
+		destroy(data);
 	}
 	data->game->player.x = new_x;
 	data->game->player.y = new_y;
@@ -46,43 +46,31 @@ void	render_img_player(t_data *data)
 		data->game->player.x * IMG_W, data->game->player.y * IMG_H);
 }
 
-void	winner_print(void)
-{
-	ft_putstr_fd("-----------------------------------------------\n", 1);
-	ft_putstr_fd("|    🎉🎉🎉  Congratulations!!!!!  🎉🎉🎉     |\n", 1);
-	ft_putstr_fd("|    You found all collectibles and exit.     |\n", 1);
-	ft_putstr_fd("|        ✓✓✓✓✓✓✓✓ You won! ✓✓✓✓✓✓✓✓           |\n", 1);
-	ft_putstr_fd("-----------------------------------------------\n", 1);
-}
-
-void	handle_error(char *s, char *to_free)
-{
-	if (to_free)
-	{
-		free(to_free);
-		to_free = NULL;
-	}
-	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd(s, 2);
-	ft_putstr_fd("\n", 2);
-	// exit(-1);
-}
-
-void	free_arr(char **arr, int count)
+int	one_player(t_game *game)
 {
 	int	i;
+	int	j;
 
-	if (!arr)
-		return ;
-	i = 0;
-	while (i < count)
+	i = 1;
+	while (i < (*game).row_count - 1)
 	{
-		if (arr[i])
+		j = 1;
+		while (j < (*game).col_count - 1)
 		{
-			free(arr[i]);
-			arr[i] = NULL;
+			if ((game->map)[i][j] == 'P')
+			{
+				(*game).player_count++;
+				game->player.y = i;
+				game->player.x = j;
+			}
+			j++;
 		}
 		i++;
 	}
-	free(arr);
+	if ((*game).player_count != 1)
+	{
+		handle_error("None or more than 1 player", NULL);
+		return (-1);
+	}
+	return (0);
 }
