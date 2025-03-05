@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:39:11 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 14:14:19 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 14:45:55 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ void	reset_temp_map(t_game *game, char **temp_map);
 int		check_map_condition(t_data *data);
 
 // check whether the map allows the player to exit and all collectibles
-int		check_path(t_game *game);
+int		check_path_to_collectible(t_game *game);
+int		check_path_to_exit(t_game *game);
 int		exit_reachable(t_game *game, char **temp_map, int x, int y);
 int		collectables_reachable(t_game *game, char **temp_map, int x, int y);
 int		check_all_collectables(t_game *game, char **temp_map);

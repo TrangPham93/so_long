@@ -6,13 +6,13 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:43:22 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 13:51:33 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 14:49:18 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_path(t_game *game)
+int	check_path_to_exit(t_game *game)
 {
 	char	**temp_map;
 	int		is_valid;
@@ -26,17 +26,6 @@ int	check_path(t_game *game)
 	if (is_valid != 0)
 	{
 		handle_error("Exit not reachable", NULL);
-		return (-1);
-	}
-	temp_map = duplicate_map(game);
-	if (!temp_map)
-		return (-1);
-	is_valid = check_all_collectables(game, temp_map);
-	free_arr(temp_map, game->row_count);
-	temp_map = NULL;
-	if (is_valid != 0)
-	{
-		handle_error("Items not reachable", NULL);
 		return (-1);
 	}
 	return (0);
@@ -56,6 +45,25 @@ int	exit_reachable(t_game *game, char **temp_map, int x, int y)
 		|| exit_reachable(game, temp_map, x, y - 1) == 0)
 		return (0);
 	return (-1);
+}
+
+int	check_path_to_collectible(t_game *game)
+{
+	char	**temp_map;
+	int		is_valid;
+
+	temp_map = duplicate_map(game);
+	if (!temp_map)
+		return (-1);
+	is_valid = check_all_collectables(game, temp_map);
+	free_arr(temp_map, game->row_count);
+	temp_map = NULL;
+	if (is_valid != 0)
+	{
+		handle_error("Items not reachable", NULL);
+		return (-1);
+	}
+	return (0);
 }
 
 int	collectables_reachable(t_game *game, char **temp_map, int x, int y)
@@ -97,23 +105,4 @@ int	check_all_collectables(t_game *game, char **temp_map)
 		i++;
 	}
 	return (0);
-}
-
-void	reset_temp_map(t_game *game, char **temp_map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < game->row_count)
-	{
-		j = 0;
-		while (j < game->col_count)
-		{
-			if (temp_map[i][j] == 'V')
-				temp_map[i][j] = '0';
-			j++;
-		}
-		i++;
-	}
 }

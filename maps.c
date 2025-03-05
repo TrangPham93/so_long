@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:26 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 14:34:39 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 14:46:53 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ int	check_map_condition(t_data *data)
 	if (is_rectangular(data->game) || is_walled(data->game)
 		|| one_player(data->game) || one_exit(data->game)
 		|| collectible_exist(data->game) || not_allowed_element(data->game)
-		|| check_path(data->game))
+		|| check_path_to_exit(data->game)
+		|| check_path_to_collectible(data->game))
 	{
 		free_arr(data->game->map, data->game->row_count);
 		data->game->map = NULL;

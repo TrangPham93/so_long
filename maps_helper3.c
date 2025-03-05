@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 14:33:11 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 14:34:53 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 14:48:12 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,23 @@ int	one_player(t_game *game)
 		return (-1);
 	}
 	return (0);
+}
+
+void	reset_temp_map(t_game *game, char **temp_map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < game->row_count)
+	{
+		j = 0;
+		while (j < game->col_count)
+		{
+			if (temp_map[i][j] == 'V')
+				temp_map[i][j] = '0';
+			j++;
+		}
+		i++;
+	}
 }
