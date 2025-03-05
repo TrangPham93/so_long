@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:39:11 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 14:45:55 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 15:09:49 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,5 @@ void	winner_print(void);
 void	free_arr(char **arr, int count);
 void	ft_free(char *ptr);
 void	close_file_and_exit(int fd, char *str);
-
 
 #endif
