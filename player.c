@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:51 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 14:14:14 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 14:34:55 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,33 +44,4 @@ void	render_img_player(t_data *data)
 {
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img_player,
 		data->game->player.x * IMG_W, data->game->player.y * IMG_H);
-}
-
-int	one_player(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 1;
-	while (i < (*game).row_count - 1)
-	{
-		j = 1;
-		while (j < (*game).col_count - 1)
-		{
-			if ((game->map)[i][j] == 'P')
-			{
-				(*game).player_count++;
-				game->player.y = i;
-				game->player.x = j;
-			}
-			j++;
-		}
-		i++;
-	}
-	if ((*game).player_count != 1)
-	{
-		handle_error("None or more than 1 player", NULL);
-		return (-1);
-	}
-	return (0);
 }
