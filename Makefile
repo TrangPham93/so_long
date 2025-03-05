@@ -6,7 +6,7 @@
 #    By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 10:30:26 by trpham            #+#    #+#              #
-#    Updated: 2025/03/05 14:34:00 by trpham           ###   ########.fr        #
+#    Updated: 2025/03/05 19:16:14 by trpham           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,8 @@ NAME = so_long
 LIBFT_DIR = ./libft
 LIBFT_NAME = $(LIBFT_DIR)/libft.a
 
+HEADERS = so_long.h
+
 # MLX configuration
 MLX_DIR = ./mlx
 MLX_LIB = $(MLX_DIR)/libmlx.a
@@ -39,12 +41,13 @@ MLX_REPO = https://github.com/42Paris/minilibx-linux.git
 all: $(MLX_DIR) $(NAME)
 
 $(MLX_DIR):
-	git clone $(MLX_REPO) mlx;
+	@echo "Mlx library doesn't exit. Clone now!!"
+	@git clone $(MLX_REPO) mlx;
 
 # Contains the X11 and MLX header files
-INCLUDES = -I$(MLX_DIR) -I$(LIBFT_DIR)
+INCLUDES = -I$(MLX_DIR) -I$(LIBFT_DIR) 
 
-%.o: %.c
+%.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@ 
 
 $(NAME): $(OBJS) $(LIBFT_NAME) $(MLX_LIB)

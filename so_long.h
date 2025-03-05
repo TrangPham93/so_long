@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:39:11 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 17:50:18 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 19:09:20 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_data
 	void	*img_wall;
 	void	*img_collects;
 	t_game	*game;
+	t_axis	win_size;
 
 }	t_data;
 
@@ -82,8 +83,6 @@ int		not_allowed_element(t_game *game);
 char	**duplicate_map(t_game *game);
 void	reset_temp_map(t_game *game, char **temp_map);
 int		check_map_condition(t_data *data);
-int	check_map_size(t_data *data);
-
 
 // check whether the map allows the player to exit and all collectibles
 int		check_path_to_collectible(t_game *game);

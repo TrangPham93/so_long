@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:35 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 13:46:12 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 19:09:47 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 
 void	load_window(t_data *data)
 {
+	mlx_get_screen_size(data->mlx_ptr, &data->win_size.x, &data->win_size.y);
+	if (data->game->row_count > (data->win_size.y / IMG_H - 3)
+		|| data->game->col_count > (data->win_size.x / IMG_W))
+	{
+		free_arr(data->game->map, data->game->row_count);
+		data->game->map = NULL;
+		if (data->mlx_ptr)
+			mlx_destroy_display(data->mlx_ptr);
+		handle_error("Map is too big", data->mlx_ptr);
+		exit(-1);
+	}
 	data->mlx_win = mlx_new_window(data->mlx_ptr, data->game->col_count * IMG_W,
 			data->game->row_count * IMG_H, "so_long");
 	if (!data->mlx_win)

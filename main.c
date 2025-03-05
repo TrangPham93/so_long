@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 14:14:31 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 19:10:34 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	init_data(t_data *data)
 	data->game->player_count = 0;
 	data->game->total_collect = 0;
 	data->game->total_move = 0;
+	data->win_size.x = 0;
+	data->win_size.y = 0;
 }
 
 void	load_asset(t_data *data)

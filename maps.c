@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:26 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 17:56:06 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/05 19:09:32 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,28 +100,10 @@ int	check_map_condition(t_data *data)
 		|| one_player(data->game) || one_exit(data->game)
 		|| collectible_exist(data->game) || not_allowed_element(data->game)
 		|| check_path_to_exit(data->game)
-		|| check_path_to_collectible(data->game)
-		|| check_map_size(data))
+		|| check_path_to_collectible(data->game))
 	{
 		free_arr(data->game->map, data->game->row_count);
 		data->game->map = NULL;
-		return (-1);
-	}
-	return (0);
-}
-
-int	check_map_size(t_data *data)
-{
-	int	max_row;
-	int	max_col;
-
-	max_row = 2160 / IMG_H;
-	max_col = 3840 / IMG_W;
-	// ft_printf("%d\n", data->game->row_count);
-	// ft_printf("%d\n", max_row);
-	if (data->game->row_count > max_row || data->game->col_count > max_col)
-	{
-		handle_error("The map is too big", NULL);
 		return (-1);
 	}
 	return (0);
