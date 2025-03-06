@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:39:11 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 19:09:20 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/06 12:59:38 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 
 # include <mlx.h>
 # include <fcntl.h>
-# include <stdlib.h>
+# include <X11/X.h>
 # include "./libft/includes/get_next_line.h"
 # include "./libft/includes/libft.h"
-# include "./libft/includes/ft_printf.h"
-# include <X11/X.h>
 
 # define IMG_W 32
 # define IMG_H 32
