@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 19:10:34 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/07 13:10:29 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void	load_asset(t_data *data)
 	{
 		handle_error("Failed to load textures", NULL);
 		destroy(data);
-		exit(-1);
 	}
 }
 

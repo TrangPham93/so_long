@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:35 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 19:09:47 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/07 13:11:01 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ void	load_window(t_data *data)
 		data->game->map = NULL;
 		if (data->mlx_ptr)
 			mlx_destroy_display(data->mlx_ptr);
-		ft_free(data->mlx_ptr);
-		handle_error("Failed to initialize a window", NULL);
+		handle_error("Failed to initialize a window", data->mlx_ptr);
 		exit(-1);
 	}
 }

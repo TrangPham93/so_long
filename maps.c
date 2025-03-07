@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:26 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/05 19:09:32 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/07 13:10:53 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,6 @@ void	read_map(const char *file_name, t_data *data)
 		exit(-1);
 	}
 	read_str = read_and_join_line(fd);
-	if (ft_strcmp(read_str, "") == 0)
-	{
-		close(fd);
-		handle_error("Map is empty", read_str);
-		exit(-1);
-	}
 	if (validate_map(read_str, data) == -1)
 	{
 		close(fd);
@@ -72,7 +66,7 @@ int	validate_map(char *str, t_data *data)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '\n' && str[i + 1] != '\0' && str[i + 1] == '\n')
+		if (str[i] == '\n' && str[i + 1] == '\n')
 		{
 			handle_error("Invalid map", str);
 			return (-1);
