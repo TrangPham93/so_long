@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 17:07:10 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/07 12:19:01 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/07 14:27:03 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	is_valid_filename(const char *str)
 		handle_error("Not a valid file type", file_type);
 		exit(-1);
 	}
-	free(file_type);
+	ft_free(file_type);
 }
 
 int	not_allowed_element(t_game *game)

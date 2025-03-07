@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:26 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/07 13:10:53 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/07 14:25:29 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*read_and_join_line(int fd)
 		read_str = temp;
 		row = get_next_line(fd);
 	}
-	free(row);
+	ft_free(row);
 	return (read_str);
 }
 

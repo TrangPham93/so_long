@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/07 13:10:29 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/07 14:23:26 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int ac, char **av)
 		free_arr(game.map, game.row_count);
 		game.map = NULL;
 		handle_error("Failed to initialize Mlx", NULL);
+		exit(-1);
 	}
 	load_window(&data);
 	load_asset(&data);
