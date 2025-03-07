@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 17:07:10 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/06 21:27:28 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/07 11:46:19 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	is_valid_filename(const char *str)
 		handle_error("substr file type not succeed", NULL);
 		exit(-1);
 	}
-	if (ft_strcmp(file_type, ".ber") != 0)
+	if (ft_strcmp(file_type, ".ber") != 0 || str[len - 5] == '/')
 	{
 		handle_error("Not a valid file type", file_type);
 		exit(-1);
