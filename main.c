@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:07:57 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/07 14:23:26 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/07 14:33:46 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	main(int ac, char **av)
 		exit(-1);
 	}
 	load_window(&data);
-	load_asset(&data);
 	mlx_hook(data.mlx_win, KeyPress, KeyPressMask, &on_keypress, &data);
 	mlx_hook(data.mlx_win, DestroyNotify, StructureNotifyMask, &destroy, &data);
 	render_image(&data);

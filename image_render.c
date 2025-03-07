@@ -6,7 +6,7 @@
 /*   By: trpham <trpham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:44:35 by trpham            #+#    #+#             */
-/*   Updated: 2025/03/07 13:11:01 by trpham           ###   ########.fr       */
+/*   Updated: 2025/03/07 14:32:46 by trpham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	load_window(t_data *data)
 		handle_error("Failed to initialize a window", data->mlx_ptr);
 		exit(-1);
 	}
+	load_asset(data);
 }
 
 void	render_image(t_data *data)
